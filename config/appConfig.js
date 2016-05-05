@@ -37,13 +37,11 @@ module.exports = function(){
        'blogService.createBlog': blogServiceURL+'createBlog',
        'blogService.addComment': blogServiceURL+'addComment',
        'blogService.addReplyComment': blogServiceURL+'addReplyComment',
-       'blogService.readBlogs': blogServiceURL+'readBlogs',       
+       'blogService.readBlogs': blogServiceURL+'readBlogs',
        'blogService.readComments': blogServiceURL+'readComments',
-       'blogService.updateBlog': blogServiceURL+'updateBlog' 
+       'blogService.updateBlog': blogServiceURL+'updateBlog'
 
 
 
     };
 };
-
-

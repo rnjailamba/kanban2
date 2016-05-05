@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
 
 		forgotPasswordLink = formLogin.find('.cd-form-bottom-message a'),
 		backToLoginLink = formForgotPassword.find('.cd-form-bottom-message a'),
-        backToForgetPasswordLinkResetPasswordEnterDetailsSignup = formForgotPasswordDetailsSignup.find('.cd-form-bottom-message a'),
+    backToForgetPasswordLinkResetPasswordEnterDetailsSignup = formForgotPasswordDetailsSignup.find('.cd-form-bottom-message a'),
 		resendOTPLink = formEnterDetailsOTP.find('.cd-form-bottom-message a'),
 		resendOTPLinkAtLogin = formEnterLoginDetailsToSignUp.find('.cd-form-bottom-message a'),
 
@@ -23,10 +23,10 @@ jQuery(document).ready(function($){
 		loginButton = formLogin.find('p .loginButton'),
 		loginButtonWithDetails = formEnterLoginDetailsToSignUp.find('p .loginButtonWithDetails'),
 
-        logoutButton = $('.cd-signout');
+    logoutButton = $('.cd-signout');
 
 		resetPasswordButton = formForgotPassword.find('p .resetButton'),
-        resetPasswordButtonDetailsSignup = formForgotPasswordDetailsSignup.find('p .resetButtonDetails'),
+    resetPasswordButtonDetailsSignup = formForgotPasswordDetailsSignup.find('p .resetButtonDetails'),
 
 		mainNav = $('.main-nav');
 
@@ -34,7 +34,7 @@ jQuery(document).ready(function($){
 
     loginSelected();
 
-    
+
 	//OPEN MODAL
 	// ==============================================
 	mainNav.on('click', function(event){
@@ -121,8 +121,8 @@ jQuery(document).ready(function($){
 
     //LOGOUT BUTTON
     // ==============================================
-    logoutButton.click(function(event){ 
-        event.preventDefault(); 
+    logoutButton.click(function(event){
+        event.preventDefault();
         ajaxCallForLogout();
     });
 
@@ -761,7 +761,7 @@ jQuery(document).ready(function($){
 		formModal.addClass('is-visible');
 		formLogin.removeClass('is-selected');
 	    formEnterDetailsOTP.removeClass('is-selected');
-        formForgotPasswordDetailsSignup.removeClass('is-selected');        
+        formForgotPasswordDetailsSignup.removeClass('is-selected');
 		formSignup.addClass('is-selected');
 		formForgotPassword.removeClass('is-selected');
 		tabLogin.removeClass('selected');
@@ -777,7 +777,7 @@ jQuery(document).ready(function($){
         formLogin.removeClass('is-selected');
 		formSignup.removeClass('is-selected');
 		formForgotPassword.removeClass('is-selected');
-        formForgotPasswordDetailsSignup.removeClass('is-selected');        
+        formForgotPasswordDetailsSignup.removeClass('is-selected');
 		formEnterLoginDetailsToSignUp.removeClass('is-selected');
 		formEnterDetailsOTP.addClass('is-selected');
     }
@@ -802,7 +802,7 @@ jQuery(document).ready(function($){
         formLogin.removeClass('is-selected');
         formSignup.removeClass('is-selected');
         formForgotPassword.removeClass('is-selected');
-        formForgotPasswordDetailsSignup.removeClass('is-selected');        
+        formForgotPasswordDetailsSignup.removeClass('is-selected');
         formEnterDetailsOTP.removeClass('is-selected');
 		formEnterLoginDetailsToSignUp.removeClass('is-selected');
         $('.cd-switcher').find('.selected').html("Forgot Password");
@@ -814,7 +814,7 @@ jQuery(document).ready(function($){
         formLogin.removeClass('is-selected');
         formSignup.removeClass('is-selected');
         formForgotPassword.removeClass('is-selected');
-        formForgotPasswordDetailsSignup.addClass('is-selected');        
+        formForgotPasswordDetailsSignup.addClass('is-selected');
         formEnterDetailsOTP.removeClass('is-selected');
         formEnterLoginDetailsToSignUp.removeClass('is-selected');
         $('.cd-switcher').find('.selected').html("Forgot Password");
