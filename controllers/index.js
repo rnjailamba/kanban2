@@ -32,7 +32,7 @@ router.get('/notLoggedIn', function(req, res){
 });
 
 
-// KANBAN WHOAMI
+// ANGULAR
 // ==============================================
 router.get('/angular', function(req, res){
 
@@ -40,6 +40,14 @@ router.get('/angular', function(req, res){
 
 });
 
+
+// INDEX
+// ==============================================
+router.get('/kanban', function(req, res){
+
+  res.render('index/kanbanAngular/kanban', { title: 'Express' });
+
+});
 
 
 var justPrintSomething = function(){
