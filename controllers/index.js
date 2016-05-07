@@ -4,12 +4,13 @@ var config = require('../config/config.js');//require all modules that are share
 var appConfig = require('../config/appConfig'); // configure service api urls in dev/prod/beta
 var redisClient = require('../helpers/exporters/export_redisClient').redisClient;
 var loginMiddleWare = require("../helpers/login/api.js");
+var path = require("path");
 
 // PING
 // ==============================================
 router.get('/ping', function(req, res){
 
-    res.render('index/ping', { title: 'Express' });
+    res.sendFile(path.join(__dirname + '/../views/index/ping.html'));
 
 });
 
@@ -41,11 +42,12 @@ router.get('/angular', function(req, res){
 });
 
 
-// INDEX
+// KANBAN
 // ==============================================
 router.get('/kanban', function(req, res){
+  res.sendFile(path.join(__dirname + '/../views/index/kanbanAngular/kanban.html'));
 
-  res.render('index/kanbanAngular/kanban', { title: 'Express' });
+  // res.render('index/kanbanAngular/kanban', { title: 'Express' });
 
 });
 

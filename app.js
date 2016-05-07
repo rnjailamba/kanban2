@@ -1,11 +1,12 @@
 var modules = require("./all_modules.js");//simply loads all modules(for app), no initialisation/creation of object of module
 var app = modules.express();
-
+var path = require("path");
 
 // VIEW ENGINE SETUP
 // ==============================================
 app.set('views', modules.path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');// set up ejs for templating
+app.set('view engine', 'ejs');
+// app.engine('html', require('ejs').renderFile);
 app.use('/jquery', modules.express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', modules.express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/node_modules', modules.express.static(__dirname + '/node_modules/'));
@@ -14,7 +15,7 @@ app.use('/css', modules.express.static(__dirname + '/public/stylesheets/'));
 app.use('/js', modules.express.static(__dirname + '/public/javascripts/'));
 app.use('/img', modules.express.static(__dirname + '/public/images/'));
 app.use('/views', modules.express.static(__dirname + '/views/'));
-app.use('/app', modules.express.static(__dirname + '/views/index/kanbanAngular/app'));
+// app.use('/app', modules.express.static(__dirname + '/views/index/kanbanAngular/app'));
 app.use(modules.flash()); // use connect-flash for flash messages stored in session
 app.set('superSecret', modules.config.secret); // secret variable
 app.use(modules.logger('dev')); // log every request to the console
@@ -68,10 +69,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  res.sendFile(path.join(__dirname + '/views/error.html'));
 });
 console.log("hellonew");
 

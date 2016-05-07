@@ -20,6 +20,7 @@
             'app.ui.page-layouts.simple.right-sidenav',
             'app.ui.page-layouts.simple.right-sidenav-ii',
             'app.ui.page-layouts.simple.tabbed',
+            'app.ui.theme-colors',
             'app.ui.typography'
         ])
         .config(config);

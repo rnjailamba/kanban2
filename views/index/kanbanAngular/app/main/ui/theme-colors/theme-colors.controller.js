@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.ui.theme-colors')
+        .module('app.ui.theme-colors', [])
         .controller('ThemeColorsController', ThemeColorsController);
 
     /** @ngInject */
@@ -31,5 +31,3 @@
 
     }
 })();
-
-

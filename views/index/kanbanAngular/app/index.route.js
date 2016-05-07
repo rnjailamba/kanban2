@@ -10,7 +10,7 @@
     function routeConfig($stateProvider, $urlRouterProvider, $locationProvider)
     {
         $locationProvider.html5Mode(true);
-
+        // console.log($urlRouterProvider);
         $urlRouterProvider.otherwise('/dashboard-project');
 
         /**
@@ -60,6 +60,7 @@
         // END - Layout Style Switcher
 
         // State definitions
+        // console.log("in index.route.js",layouts[layoutStyle]);
         $stateProvider
             .state('app', {
                 abstract: true,
