@@ -44,10 +44,9 @@ router.get('/angular', function(req, res){
 
 // KANBAN
 // ==============================================
-router.get('/kanban', function(req, res){
-  res.sendFile(path.join(__dirname + '/../views/index/kanbanAngular/kanban.html'));
+router.get('/*', function(req, res){
 
-  // res.render('index/kanbanAngular/kanban', { title: 'Express' });
+  res.sendFile(path.join(__dirname + '/../views/index/kanbanAngular/kanban.html'));
 
 });
 
