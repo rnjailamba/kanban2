@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <title>Fuse - Admin Theme</title>
+        <title>Project Management Board</title>
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -43,9 +43,30 @@
     <body md-theme="{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
           class="{{state.current.bodyClass || ''}}">
 
-        <!-- SPLASH SCREEN -->
-
-        <!-- / SPLASH SCREEN -->
+          <!-- SPLASH SCREEN -->
+          <ms-splash-screen id="splash-screen">
+              <div class="center">
+                  <div class="logo">
+                      <span>C</span>
+                  </div>
+                  <!-- Material Design Spinner -->
+                  <div class="spinner-wrapper">
+                      <div class="spinner">
+                          <div class="inner">
+                              <div class="gap"></div>
+                              <div class="left">
+                                  <div class="half-circle"></div>
+                              </div>
+                              <div class="right">
+                                  <div class="half-circle"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- / Material Design Spinner -->
+              </div>
+          </ms-splash-screen>
+          <!-- / SPLASH SCREEN -->
 
         <div id="main" class="animate-slide-up" ui-view="main" layout="column"></div>
 
@@ -126,6 +147,12 @@
         <script src="views/index/kanbanAngular/app/main/apps/scrumboard/services/filters.service.js"></script>
         <script src="views/index/kanbanAngular/app/main/apps/scrumboard/services/dialog.service.js"></script>
         <script src="views/index/kanbanAngular/app/main/apps/scrumboard/services/board.service.js"></script>
+
+        <script src="views/index/kanbanAngular/app/main/apps/calendar/calendar.module.js"></script>
+        <script src="views/index/kanbanAngular/app/main/apps/calendar/dialogs/event-form/event-form-dialog.controller.js"></script>
+        <script src="views/index/kanbanAngular/app/main/apps/calendar/dialogs/event-detail/event-detail-dialog.controller.js"></script>
+        <script src="views/index/kanbanAngular/app/main/apps/calendar/calendar.controller.js"></script>
+
         <script src="views/index/kanbanAngular/app/quick-panel/quick-panel.module.js"></script>
         <script src="views/index/kanbanAngular/app/quick-panel/tabs/chat/chat-tab.controller.js"></script>
         <script src="views/index/kanbanAngular/app/main/ui/typography/typography.module.js"></script>
@@ -138,10 +165,25 @@
         <script src="views/index/kanbanAngular/app/main/ui/forms/forms.module.js"></script>
         <script src="views/index/kanbanAngular/app/main/ui/forms/forms.controller.js"></script>
         <script src="views/index/kanbanAngular/app/main/apps/scrumboard/scrumboard.controller.js"></script>
+
         <script src="views/index/kanbanAngular/app/core/core.module.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-widget/ms-widget.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-timeline/ms-timeline.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-stepper/ms-stepper.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-splash-screen/ms-splash-screen.directive.js"></script>
         <script src="views/index/kanbanAngular/app/core/directives/ms-sidenav-helper/ms-sidenav-helper.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-search-bar/ms-search-bar.directive.js"></script>
         <script src="views/index/kanbanAngular/app/core/directives/ms-scroll/ms-scroll.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-responsive-table/ms-responsive-table.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-random-class/ms-random-class.directive.js"></script>
         <script src="views/index/kanbanAngular/app/core/directives/ms-navigation/ms-navigation.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-nav/ms-nav.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-material-color-picker/ms-material-color-picker.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-form-wizard/ms-form-wizard.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-datepicker-fix/ms-datepicker-fix.directive.js"></script>
+        <script src="views/index/kanbanAngular/app/core/directives/ms-card/ms-card.directive.js"></script>
+
+
         <script src="views/index/kanbanAngular/app/core/theming/fuse-theming.provider.js"></script>
         <script src="views/index/kanbanAngular/app/core/theming/fuse-theming.config.js"></script>
         <script src="views/index/kanbanAngular/app/core/theming/fuse-themes.constant.js"></script>
@@ -154,6 +196,7 @@
         <script src="views/index/kanbanAngular/app/core/filters/basic.filter.js"></script>
         <script src="views/index/kanbanAngular/app/core/directives/highlight.directive.js"></script>
         <script src="views/index/kanbanAngular/app/core/config/fuse-config.provider.js"></script>
+
         <script src="views/index/kanbanAngular/app/toolbar/toolbar.module.js"></script>
         <script src="views/index/kanbanAngular/app/toolbar/toolbar.controller.js"></script>
         <script src="views/index/kanbanAngular/app/quick-panel/quick-panel.controller.js"></script>
@@ -163,12 +206,14 @@
         <script src="views/index/kanbanAngular/app/main/main.controller.js"></script>
         <script src="views/index/kanbanAngular/app/core/core.run.js"></script>
         <script src="views/index/kanbanAngular/app/core/core.config.js"></script>
+
         <script src="views/index/kanbanAngular/app/index.run.js"></script>
         <script src="views/index/kanbanAngular/app/index.route.js"></script>
         <script src="views/index/kanbanAngular/app/index.controller.js"></script>
         <script src="views/index/kanbanAngular/app/index.constants.js"></script>
         <script src="views/index/kanbanAngular/app/index.config.js"></script>
         <script src="views/index/kanbanAngular/app/index.api.js"></script>
+
         <script src="views/index/kanbanAngular/app/main/ui/ui.module.js"></script>
         <script src="views/index/kanbanAngular/app/main/pages/pages.module.js"></script>
         <script src="views/index/kanbanAngular/app/main/components/components.module.js"></script>        <!-- endinject -->

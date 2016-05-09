@@ -9,6 +9,7 @@
     /** @ngInject */
     function routeConfig($stateProvider, $urlRouterProvider, $locationProvider)
     {
+        // use the HTML5 History API
         $locationProvider.html5Mode(true);
         // console.log($urlRouterProvider);
         $urlRouterProvider.otherwise('/dashboard-project');

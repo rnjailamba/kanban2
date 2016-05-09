@@ -22,5 +22,6 @@
 
             // Apps
             'app.scrumboard',
+            'app.calendar'
         ]);
 })();
