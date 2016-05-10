@@ -12,7 +12,7 @@
         // use the HTML5 History API
         $locationProvider.html5Mode(true);
         // console.log($urlRouterProvider);
-        $urlRouterProvider.otherwise('/dashboard-project');
+        $urlRouterProvider.otherwise('/kanban/scrumboard/boards');
 
         /**
          * Layout Style Switcher

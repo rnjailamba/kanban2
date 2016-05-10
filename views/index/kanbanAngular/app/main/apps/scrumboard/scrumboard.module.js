@@ -15,7 +15,7 @@
         $stateProvider
             .state('app.scrumboard', {
                 abstract : true,
-                url      : '/scrumboard',
+                url      : '/kanban/scrumboard',
                 resolve  : {
                     BoardList: function (msApi)
                     {
