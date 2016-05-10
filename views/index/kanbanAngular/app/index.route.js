@@ -62,9 +62,15 @@
 
         // State definitions
         // console.log("in index.route.js",layouts[layoutStyle]);
+        //https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views
+        //http://plnkr.co/edit/u18KQc?p=preview
+        // absolutely targets the 'main' view in root unnamed state.
+        // <div ui-view='main'/> within kanban.html
+        //https://github.com/angular-ui/ui-router/wiki/Multiple-Named-Views#view-names---relative-vs-absolute-names
         $stateProvider
             .state('app', {
                 abstract: true,
+                url      : '/kanban',
                 views   : {
                     'main@'         : {
                         templateUrl: layouts[layoutStyle].main,

@@ -24,6 +24,8 @@
             });
         });
 
+        $rootScope.$on("$stateChangeError", console.log.bind(console));
+
         // Store state in the root scope for easy access
         $rootScope.state = $state;
         console.log($state,"state");
