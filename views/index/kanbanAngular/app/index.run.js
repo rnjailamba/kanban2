@@ -28,7 +28,7 @@
 
         // Store state in the root scope for easy access
         $rootScope.state = $state;
-        console.log($state,"state");
+        // console.log($state,"state");
 
         // Cleanup
         $rootScope.$on('$destroy', function ()

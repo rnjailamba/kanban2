@@ -7,7 +7,7 @@
         .config(config)
         .run(run);
 
-    console.log("here");
+    // console.log("here");
 
     /** @ngInject */
     function config($stateProvider, $translatePartialLoaderProvider, msApiProvider, msNavigationServiceProvider)
@@ -19,6 +19,7 @@
                 resolve  : {
                     BoardList: function (msApi)
                     {
+                        // console.log("msApi.resolve('scrumboard.boardList@get')",msApi.resolve('scrumboard.boardList@get'));
                         return msApi.resolve('scrumboard.boardList@get');
                     }
                 },

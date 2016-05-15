@@ -68,6 +68,7 @@
          */
         function register(key, resource)
         {
+            // console.log("register",key,resource);
             if ( !angular.isString(key) )
             {
                 $log.error('"path" must be a string (eg. `dashboard.project`)');
@@ -89,6 +90,7 @@
             };
 
             // Assign the resource
+            // console.log(resourceObj,"resourceObj");
             api[key] = $resource(resourceObj.url, resourceObj.paramDefaults, resourceObj.actions, resourceObj.options);
         }
 
@@ -121,10 +123,12 @@
              */
             function resolve(action, parameters)
             {
+                console.log("resolve",action,parameters);
                 var actionParts = action.split('@'),
                     resource = actionParts[0],
                     method = actionParts[1],
                     params = parameters || {};
+                console.log(actionParts,"actionParts");
 
                 if ( !resource || !method )
                 {
@@ -137,6 +141,7 @@
 
                 // Get the correct resource definition from api object
                 var apiObject = api[resource];
+                // console.log(apiObject[method],"apiObject");
 
                 if ( !apiObject )
                 {
@@ -151,6 +156,7 @@
                         function (response)
                         {
                             deferred.resolve(response);
+                            console.log("success",response);
                         },
 
                         // Error
@@ -160,6 +166,7 @@
                         }
                     );
                 }
+                // console.log(deferred.promise,"deferred.promise");
 
                 // Return the promise
                 return deferred.promise;

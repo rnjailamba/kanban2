@@ -51,6 +51,15 @@ router.get('/kanban*', function(req, res){
 });
 
 
+// UI
+// ==============================================
+router.get('/forms*', function(req, res){
+
+  res.sendFile(path.join(__dirname + '/../views/index/kanbanAngular/linkedForms.html'));
+
+});
+
+
 var justPrintSomething = function(){
     console.log("print something");
 }
