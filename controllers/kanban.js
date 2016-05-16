@@ -6,49 +6,24 @@ var redisClient = require('../helpers/exporters/export_redisClient').redisClient
 var loginMiddleWare = require("../helpers/login/api.js");
 var path = require("path");
 
+
 // PING
 // ==============================================
 router.get('/ping', function(req, res){
 
-    res.sendFile(path.join(__dirname + '/../views/index/ping.html'));
+    res.status(200).send("ok");
 
 });
 
 
-// INDEX
+// KANBAN
 // ==============================================
-router.get('/', function(req, res){
+router.get('/*', function(req, res){
 
-  	loginMiddleWare.functions.isLoggedInWithRender(req,res,redisClient,'index/landing',null);
-
-});
-
-
-// NOT LOGGED IN
-// ==============================================
-router.get('/notLoggedIn', function(req, res){
-
-    res.render('index/notLoggedIn', { title: 'Express' });
+  res.sendFile(path.join(__dirname + '/../views/kanban/kanbanAngular/kanban.html'));
 
 });
 
-
-// ANGULAR
-// ==============================================
-router.get('/angular', function(req, res){
-
-  res.render('index/angular', { title: 'Express' });
-
-});
-
-
-// UI
-// ==============================================
-router.get('/forms*', function(req, res){
-
-  res.sendFile(path.join(__dirname + '/../views/index/kanbanAngular/linkedForms.html'));
-
-});
 
 
 var justPrintSomething = function(){

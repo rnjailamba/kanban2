@@ -15,8 +15,8 @@ app.use('/css', modules.express.static(__dirname + '/public/stylesheets/'));
 app.use('/js', modules.express.static(__dirname + '/public/javascripts/'));
 app.use('/img', modules.express.static(__dirname + '/public/images/'));
 app.use('/views', modules.express.static(__dirname + '/views/'));
-app.use('/app', modules.express.static(__dirname + '/views/index/kanbanAngular/app'));
-app.use('/assets', modules.express.static(__dirname + '/views/index/kanbanAngular/assets'));
+app.use('/app', modules.express.static(__dirname + '/views/kanban/kanbanAngular/app'));//Hardcoded the path to angular templates
+app.use('/assets', modules.express.static(__dirname + '/views/kanban/kanbanAngular/assets'));////Hardcoded the path to angular assets
 app.use(modules.flash()); // use connect-flash for flash messages stored in session
 app.set('superSecret', modules.config.secret); // secret variable
 app.use(modules.logger('dev')); // log every request to the console
