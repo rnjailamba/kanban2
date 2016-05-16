@@ -16,11 +16,10 @@
             .state('app.scrumboard', {
                 abstract : true,
                 url      : '/scrumboard',
-                resolve  : {
-                    BoardList: function (msApi)
+                resolve: {
+                    BoardList: function ($stateParams, BoardsService)
                     {
-                        // console.log("msApi.resolve('scrumboard.boardList@get')",msApi.resolve('scrumboard.boardList@get'));
-                        return msApi.resolve('scrumboard.boardList@get');
+                        return BoardsService.getBoardsData();
                     }
                 },
                 bodyClass: 'scrumboard'
