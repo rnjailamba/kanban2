@@ -96,7 +96,7 @@
         $translatePartialLoaderProvider.addPart('app/main/apps/scrumboard');
 
         // Api
-        msApiProvider.register('scrumboard.boardList', ['app/data/scrumboard/board-list.json']);
+        msApiProvider.register('scrumboard.boardList', ['/kanban/getProjects']);
         msApiProvider.register('scrumboard.board', ['app/data/scrumboard/boards/:id.json']);
 
         // Navigation
