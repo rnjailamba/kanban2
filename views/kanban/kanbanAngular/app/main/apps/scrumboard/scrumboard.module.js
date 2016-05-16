@@ -97,7 +97,7 @@
 
         // Api
         msApiProvider.register('scrumboard.boardList', ['/kanban/getProjects']);
-        msApiProvider.register('scrumboard.board', ['app/data/scrumboard/boards/:id.json']);
+        msApiProvider.register('scrumboard.board', ['/kanban/getProject/:id']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.scrumboard', {
