@@ -21,21 +21,8 @@ router.get('/ping', function(req, res){
 router.get('/getProjects', function(req, res, next) {
 
   console.log("in get projects");
-  var allProjects = {
-                        "data": [
-                            {
-                                "name": "Project1",
-                                "uri": "acme-frontend-application",
-                                "id": "32gfhaf2"
-                            },
-                            {
-                                "name": "Project 2",
-                                "uri": "acme-backend-application",
-                                "id": "27cfcbe1"
-                            }
-                        ]
-                    };
-    res.status(200).send(allProjects);
+  var allProjects = getAllProjects();
+  res.status(200).send(allProjects);
 
 });
 
@@ -46,7 +33,7 @@ router.get('/getProject/:id', function(req, res, next) {
 
   console.log("in get project",req.params.id);
   var singleProject = getSingleProjectData();
-  console.log(singleProject);
+  // console.log(singleProject);
   res.status(200).send(singleProject);
 
 });
@@ -264,7 +251,73 @@ var getSingleProjectData = function(){
               ]
           }
       };
-    return x;
+  return x;
+}
+
+
+var getAllProjects = function(){
+  var x =
+    {
+      "data": [
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project1",
+              "uri": "acme-frontend-application",
+              "id": "32gfhaf2"
+          },
+          {
+              "name": "Project 2",
+              "uri": "acme-backend-application",
+              "id": "27cfcbe1"
+          },
+          {
+              "name": "Project 2",
+              "uri": "acme-backend-application",
+              "id": "27cfcbe1"
+          }
+      ]
+  };
+
+  return x;
 }
 
 module.exports.router = router;
