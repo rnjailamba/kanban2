@@ -35,6 +35,7 @@
         {
             if ( vm.boardList.getById(vm.board.id) )
             {
+                console.log("updateBoardUri");
                 vm.boardList.getById(vm.board.id).name = vm.board.name;
                 vm.boardList.getById(vm.board.id).uri = vm.board.uri = encodeURIComponent(vm.board.name).replace(/%20/g, '-').toLowerCase();
             }

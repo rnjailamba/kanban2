@@ -101,7 +101,7 @@
         // Navigation
         msNavigationServiceProvider.saveItem('apps.scrumboard', {
             title : 'Scrumboard',
-            icon  : 'icon-trello',
+            icon  : 'icon-home',
             state : 'app.scrumboard.boards',
             weight: 6
         });

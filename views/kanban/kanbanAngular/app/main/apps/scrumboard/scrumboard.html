@@ -11,8 +11,8 @@
                            ng-class="'md-'+vm.board.settings.color+'-700-bg'"
                            ng-click="vm.boardSelectorVisible = !vm.boardSelectorVisible"
                            aria-label="boards button" translate translate-attr-aria-label="SB.BOARDS_BUTTON">
-                    <md-icon md-font-icon="icon-trello" class="icon"></md-icon>
-                    <span translate="SB.BOARDS">BOARDS</span>
+                    <md-icon md-font-icon="icon-chart-bar" class="icon"></md-icon>
+                    <span translate="">PROJECTS</span>
                 </md-button>
             </div>
             <!-- / BOARD SELECTION BUTTON -->
@@ -43,7 +43,7 @@
                            class="md-icon-button"
                            ui-sref="app.scrumboard.boards.board"
                            aria-label="Board" translate translate-attr-aria-label="SB.BOARD">
-                    <md-icon md-font-icon="icon-trello"></md-icon>
+                    <md-icon md-font-icon="icon-home-up"></md-icon>
                     <md-tooltip><span translate="SB.BOARD">Board</span></md-tooltip>
                 </md-button>
                 <!-- / BOARD BUTTON -->
@@ -95,7 +95,7 @@
              layout="column" layout-align="space-between center">
 
             <div class="board-icon">
-                <i class="icon-trello s64"></i>
+                <i class="icon-home s64"></i>
             </div>
 
             <div flex class="board-name">{{board.name}}</div>
@@ -114,7 +114,7 @@
              layout="column" layout-align="space-between center">
 
             <div class="board-icon">
-                <i class="icon-trello s64"></i>
+                <i class="icon-home s64"></i>
             </div>
 
             <div flex class="board-name" translate="SB.ADD_NEW_BOARD">Add New Board</div>
