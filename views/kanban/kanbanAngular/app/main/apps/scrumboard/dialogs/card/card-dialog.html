@@ -342,7 +342,7 @@
                     </div>
                 </div>
 
-                <div class="picker hour-picker" moment-picker="vm.card.due" format="x" min-view="day" max-view="hour"
+                <div class="picker hour-picker" moment-picker="vm.card.due" format="x" min-view="day" max-view="day"
                      start-view="day">
                     <div layout="row" layout-align="start center">
                         <i class="s18 icon icon-clock"></i>
@@ -362,7 +362,7 @@
         <div class="description">
             <md-input-container class="md-block">
                 <label translate="SB.DESCRIPTION">Description</label>
-                <textarea ng-model="vm.card.description" columns="1" md-maxlength="150" rows="5"></textarea>
+                <textarea ng-model="vm.card.description" columns="1" md-maxlength="150" rows="2"></textarea>
             </md-input-container>
         </div>
         <!-- / DESCRIPTION -->
@@ -429,23 +429,23 @@
             </div>
             <!-- / LABELS SECTION -->
 
-
+            <!-- ATTACHMENTS BUTTON -->
             <div class="attachments">
 
                 <div class="section-header" layout="row" layout-align="start center">
                     <i class="icon-attachment s18"></i>
                     <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
                 </div>
-
-
-                      <md-button class="add-attachment-button" aria-label="add attachment">
-                          <div layout="row" layout-align="start center">
-                              <i class="icon-plus s20"></i>
-                              <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
-                          </div>
-                      </md-button>
+                <md-button class="add-attachment-button" aria-label="add attachment">
+                    <div layout="row" layout-align="start center">
+                        <i class="icon-plus s20"></i>
+                        <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
+                    </div>
+                </md-button>
 
             </div>
+            <!-- / ATTACHMENTS BUTTON -->
+
 
             <!-- ATTACHMENTS SECTION -->
             <div ng-if="vm.card.attachments[0]" class="section">
@@ -628,7 +628,7 @@
                                 <md-button type="submit" class="md-raised md-accent"
                                            ng-disabled="cardCommentForm.$invalid || cardCommentForm.$pristine"
                                            aria-label="Add">
-                                    <span translate="SB.ADD">Add</span>
+                                    <span translate="">Add Comment</span>
                                 </md-button>
                             </div>
                         </form>

@@ -62,7 +62,7 @@
          */
         function finish()
         {
-            console.log("in finish");
+            // console.log("in finish");
             $mdDialog.hide();
 
         };
