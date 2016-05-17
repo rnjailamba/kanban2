@@ -429,14 +429,27 @@
             </div>
             <!-- / LABELS SECTION -->
 
+
+            <div class="attachments">
+
+                <div class="section-header" layout="row" layout-align="start center">
+                    <i class="icon-attachment s18"></i>
+                    <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
+                </div>
+
+
+                      <md-button class="add-attachment-button" aria-label="add attachment">
+                          <div layout="row" layout-align="start center">
+                              <i class="icon-plus s20"></i>
+                              <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
+                          </div>
+                      </md-button>
+
+            </div>
+
             <!-- ATTACHMENTS SECTION -->
             <div ng-if="vm.card.attachments[0]" class="section">
                 <div class="attachments">
-
-                    <div class="section-header" layout="row" layout-align="start center">
-                        <i class="icon-attachment s18"></i>
-                        <span class="section-title" translate="SB.ATTACHMENTS">Attachments</span>
-                    </div>
 
                     <div class="section-content">
 
@@ -507,12 +520,12 @@
                             </div>
                         </div>
 
-                        <md-button class="add-attachment-button" aria-label="add attachment">
+                        <!-- <md-button class="add-attachment-button" aria-label="add attachment">
                             <div layout="row" layout-align="start center">
                                 <i class="icon-plus s20"></i>
                                 <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
                             </div>
-                        </md-button>
+                        </md-button> -->
                     </div>
                 </div>
             </div>
@@ -671,7 +684,6 @@
     <!--  SAVE -->
     <md-dialog-actions>
       <md-button aria-label="Finished"  ng-click="vm.finish()">Save
-
       </md-button>
     </md-dialog-actions>
     <!-- / SAVE -->
