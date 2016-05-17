@@ -8,7 +8,7 @@
             <!-- DUE DATE -->
             <div class="due-date">
                 <div ng-if="!vm.card.due" moment-picker="vm.card.due" format="x" min-view="year"
-                     max-view="hour"
+                     max-view="day"
                      start-view="month">
                     <md-button class="md-icon-button" aria-label="Due date" translate
                                translate-attr-aria-label="SB.DUE_DATE"
@@ -23,6 +23,7 @@
                 <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
                     <md-icon md-font-icon="icon-calendar"></md-icon>
                 </md-button>
+
 
                 <md-menu-content class="remove-due-date-menu-content" width="4" ms-scroll>
                     <md-menu-item>
@@ -666,6 +667,14 @@
 
     </md-dialog-content>
     <!-- / DIALOG CONTENT -->
+
+    <!--  SAVE -->
+    <md-dialog-actions>
+      <md-button aria-label="Finished"  ng-click="vm.finish()">Save
+
+      </md-button>
+    </md-dialog-actions>
+    <!-- / SAVE -->
 
 </md-dialog>
 <!-- / CARD DIALOG -->

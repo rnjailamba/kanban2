@@ -14,6 +14,10 @@
         // Data
         vm.currentView = 'board';
         vm.board = BoardService.data;
+        console.log("vm.board", vm.board);
+        vm.board.lists.push({name:"Current",id:"2223232"});
+        // console.log("vm.board.lists", vm.board.lists);
+
         vm.boardList = BoardList.data;
         vm.cardFilters = CardFilters;
         vm.card = {};

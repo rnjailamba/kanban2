@@ -24,6 +24,7 @@
         vm.toggleInArray = msUtils.toggleInArray;
         vm.exists = msUtils.exists;
         vm.closeDialog = closeDialog;
+        vm.finish = finish;
         vm.getCardList = getCardList;
         vm.removeCard = removeCard;
         /* Attachment */
@@ -54,6 +55,17 @@
         {
             $mdDialog.hide();
         }
+
+
+        /**
+         * Save Dialog
+         */
+        function finish()
+        {
+            console.log("in finish");
+            $mdDialog.hide();
+
+        };
 
         /**
          * Get Card List
