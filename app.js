@@ -72,7 +72,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.sendFile(path.join(__dirname + '/views/error.html'));
 });
-console.log("hellonew");
 
 process.env.PORT = 3002;
 module.exports = app;

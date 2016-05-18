@@ -10,7 +10,7 @@
     function BoardService($q, msApi)
     {
         var service = {
-            data        : {},//This is filled up below 
+            data        : {},//This is filled up below
             addNewBoard : addNewBoard,
             getBoardData: getBoardData
         };
