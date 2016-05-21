@@ -46,6 +46,12 @@
         /* Comment */
         vm.addNewComment = addNewComment;
 
+        /* Show tooltip */
+        $timeout(function(){
+          vm.showTooltipStartDate = true;
+          vm.showTooltipDueDate = true;
+        }, 500);
+
         //////////
 
         /**

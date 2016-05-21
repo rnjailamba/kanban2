@@ -14,6 +14,9 @@
                                translate-attr-aria-label="SB.DUE_DATE"
                                ng-click="$mdOpenMenu($event)">
                         <md-icon md-font-icon="icon-calendar"></md-icon>
+                        <md-tooltip  md-direction="top" md-visible="vm.showTooltipStartDate">
+                            Start 
+                        </md-tooltip>
                     </md-button>
                 </div>
             </div>
@@ -46,6 +49,9 @@
                                translate-attr-aria-label="SB.DUE_DATE"
                                ng-click="$mdOpenMenu($event)">
                         <md-icon md-font-icon="icon-calendar"></md-icon>
+                        <md-tooltip md-direction="top" md-visible="vm.showTooltipDueDate">
+                            End
+                        </md-tooltip>
                     </md-button>
                 </div>
             </div>
@@ -367,6 +373,7 @@
 
             <!-- START DATE -->
             <div ng-if="vm.card.start" class="due-date" layout="column" layout-align="start center">
+                <span>Start Date</span>
                 <div class="picker day-picker" moment-picker="vm.card.start" format="x" min-view="year" max-view="month"
                      start-view="month">
                     <div layout="row" layout-align="start center">
@@ -391,6 +398,7 @@
 
             <!-- DUE DATE -->
             <div ng-if="vm.card.due" class="due-date" layout="column" layout-align="start center">
+                <span>End Date</span>
                 <div class="picker day-picker" moment-picker="vm.card.due" format="x" min-view="year" max-view="month"
                      start-view="month">
                     <div layout="row" layout-align="start center">
