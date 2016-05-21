@@ -7,353 +7,177 @@
         .controller('ScrumboardDynamicCardDialogController', ScrumboardDynamicCardDialogController);
 
     /** @ngInject */
-    function ScrumboardDynamicCardDialogController($document, $mdDialog, fuseTheming, fuseGenerator, msUtils, BoardService, cardId)
+    function ScrumboardDynamicCardDialogController($document, $mdDialog, fuseTheming, fuseGenerator, msUtils,
+                                                      BoardService, cardId)
     {
         var vm = this;
+        // list of `state` value/display objects
+        vm.states        = loadAll();
+        vm.querySearch   = querySearch;
 
-        // Data
-        vm.board = BoardService.data;
-        vm.card = vm.board.cards.getById(cardId);
-        vm.newLabelColor = 'red';
-        vm.members = vm.board.members;
-        vm.labels = vm.board.labels;
 
-        // Methods
-        vm.palettes = fuseTheming.getRegisteredPalettes();
-        vm.rgba = fuseGenerator.rgba;
-        vm.toggleInArray = msUtils.toggleInArray;
-        vm.exists = msUtils.exists;
-        vm.closeDialog = closeDialog;
-        vm.finish = finish;
-        vm.getCardList = getCardList;
-        vm.removeCard = removeCard;
-        /* Attachment */
-        vm.toggleCoverImage = toggleCoverImage;
-        vm.removeAttachment = removeAttachment;
-        /* Labels */
-        vm.labelQuerySearch = labelQuerySearch;
-        vm.filterLabel = filterLabel;
-        vm.addNewLabel = addNewLabel;
-        vm.removeLabel = removeLabel;
-        /* Members */
-        vm.memberQuerySearch = memberQuerySearch;
-        vm.filterMember = filterMember;
-        /* Checklist */
-        vm.updateCheckedCount = updateCheckedCount;
-        vm.addCheckItem = addCheckItem;
-        vm.removeChecklist = removeChecklist;
-        vm.createCheckList = createCheckList;
-        /* Comment */
-        vm.addNewComment = addNewComment;
-
-        /* Show tooltip */
-        $timeout(function(){
-          vm.showTooltipStartDate = true;
-          vm.showTooltipDueDate = true;
-        }, 500);
-
-        //////////
-
-        /**
-         * Close Dialog
-         */
-        function closeDialog()
-        {
+        // ******************************
+        // Template methods
+        // ******************************
+        vm.cancel = function($event) {
+          $mdDialog.cancel();
+        };
+        vm.finish = function($event) {
+          // console.log(vm.searchText,"attempt to shut");
+          var checkAuto = checkAutocompleteEntry();
+          var checkSelect = checkSelectEntry();
+          console.log(checkAuto);
+          if(checkAuto.bool && checkSelect){
             $mdDialog.hide();
-        }
+          }
+          else{
+            var el = angular.element(document.getElementById('toastBounds'));
+            showCustomToastBelowButton(el,checkAuto.msg);
+            if(!checkAuto.bool){
+              $timeout(function(){
+                vm.showTooltip = true;
+              }, 500);
+            }
+
+            if(!checkSelect){
+              console.log("enter select",checkSelect);
+              $timeout(function(){
+                vm.showTooltip1  = true;
+              }, 500);
+            }
 
 
-        /**
-         * Save Dialog
-         */
-        function finish()
-        {
-            // console.log("in finish");
-            $mdDialog.hide();
-
+          }
         };
 
-        /**
-         * Get Card List
-         */
-        function getCardList()
-        {
-            var response;
-            for ( var i = 0, len = vm.board.lists.length; i < len; i++ )
-            {
-                if ( vm.board.lists[i].idCards.indexOf(vm.card.id) > -1 )
-                {
-                    response = vm.board.lists[i];
-                    break;
-                }
+        function checkSelectEntry(){
+          var select1 = "";//sharedProperties.getProperty1();
+          var select2 = "";//sharedProperties.getProperty2();
+          if(select1 && select2){
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+
+        function showCustomToastBelowButton(el,msg) {
+          var toast = $mdToast.simple()
+            .content("There were issues in filling the form.Please click ok to see the issues")
+            .action('OK')
+            .highlightAction(true)
+            .hideDelay(0)
+            .position('right')
+            .parent($document[0].querySelector('#toastBounds1'));
+
+          $mdToast.show(toast);
+        };
+
+        function checkAutocompleteEntry(){
+
+          var array = (vm.states);
+          var returnMsg = {};
+          returnMsg.bool = false;
+          for (var i = array.length - 1; i >= 0; i--) {
+            if( (vm.searchText == array[i].value) || (vm.searchText == array[i].display) ){
+              returnMsg.bool = true;
+              returnMsg.msg = "you have entered something from the list";
             }
-            return response;
+          };
+          if( returnMsg.bool == false ){
+              returnMsg.bool = false;
+              returnMsg.msg = "you have NOT entered something from the list";
+          }
+          return returnMsg;
+
         }
-
+        // ******************************
+        // Internal methods
+        // ******************************
         /**
-         * Remove card
-         *
-         * @param ev
+         * Search for states... use $timeout to simulate
+         * remote dataservice call.
          */
-        function removeCard(ev)
-        {
-            var confirm = $mdDialog.confirm({
-                title              : 'Remove Card',
-                parent             : $document.find('#scrumboard'),
-                textContent        : 'Are you sure want to remove card?',
-                ariaLabel          : 'remove card',
-                targetEvent        : ev,
-                clickOutsideToClose: true,
-                escapeToClose      : true,
-                ok                 : 'Remove',
-                cancel             : 'Cancel'
-            });
-
-            $mdDialog.show(confirm).then(function ()
-            {
-                var cardList = getCardList();
-
-                cardList.idCards.splice(cardList.idCards.indexOf(vm.card.id), 1);
-
-                vm.board.cards.splice(vm.board.cards.indexOf(vm.card), 1);
-
-            }, function ()
-            {
-                // Canceled
-            });
+        function querySearch (query) {
+          return query ? vm.states.filter( createFilterFor(query) ) : vm.states;
         }
-
         /**
-         * Toggle cover image
-         *
-         * @param attachmentId
+         * Build `states` list of key/value pairs
          */
-        function toggleCoverImage(attachmentId)
-        {
-            if ( attachmentId === vm.card.idAttachmentCover )
-            {
-                vm.card.idAttachmentCover = null;
-            }
-            else
-            {
-                vm.card.idAttachmentCover = attachmentId;
-            }
-        }
-
-        /**
-         * Remove attachment
-         *
-         * @param item
-         */
-        function removeAttachment(item)
-        {
-            if ( vm.card.idAttachmentCover === item.id )
-            {
-                vm.card.idAttachmentCover = '';
-            }
-            vm.card.attachments.splice(vm.card.attachments.indexOf(item), 1);
-        }
-
-        /**
-         * Add label chips
-         *
-         * @param query
-         * @returns {filterFn}
-         */
-        function labelQuerySearch(query)
-        {
-            return query ? vm.labels.filter(createFilterFor(query)) : [];
-        }
-
-        /**
-         * Label filter
-         *
-         * @param label
-         * @returns {boolean}
-         */
-        function filterLabel(label)
-        {
-            if ( !vm.labelSearchText || vm.labelSearchText === '' )
-            {
-                return true;
-            }
-
-            return angular.lowercase(label.name).indexOf(angular.lowercase(vm.labelSearchText)) >= 0;
-        }
-
-        /**
-         * Add new label
-         */
-        function addNewLabel()
-        {
-            vm.board.labels.push({
-                id   : msUtils.guidGenerator(),
-                name : vm.newLabelName,
-                color: vm.newLabelColor
-            });
-
-            vm.newLabelName = '';
-        }
-
-        /**
-         * Remove label
-         */
-        function removeLabel()
-        {
-            var arr = vm.board.labels;
-            arr.splice(arr.indexOf(arr.getById(vm.editLabelId)), 1);
-
-            angular.forEach(vm.board.cards, function (card)
-            {
-                if ( card.idLabels && card.idLabels.indexOf(vm.editLabelId) > -1 )
-                {
-                    card.idLabels.splice(card.idLabels.indexOf(vm.editLabelId), 1);
-                }
-            });
-
-            vm.newLabelName = '';
-        }
-
-        /**
-         * Add member chips
-         *
-         * @param query
-         * @returns {Array}
-         */
-        function memberQuerySearch(query)
-        {
-            return query ? vm.members.filter(createFilterFor(query)) : [];
-        }
-
-        /**
-         * Member filter
-         *
-         * @param member
-         * @returns {boolean}
-         */
-        function filterMember(member)
-        {
-            if ( !vm.memberSearchText || vm.memberSearchText === '' )
-            {
-                return true;
-            }
-
-            return angular.lowercase(member.name).indexOf(angular.lowercase(vm.memberSearchText)) >= 0;
-        }
-
-        /**
-         * Update check list stats
-         * @param list
-         */
-        function updateCheckedCount(list)
-        {
-            var checkItems = list.checkItems;
-            var checkedItems = 0;
-            var allCheckedItems = 0;
-            var allCheckItems = 0;
-
-            angular.forEach(checkItems, function (checkItem)
-            {
-                if ( checkItem.checked )
-                {
-                    checkedItems++;
-                }
-            });
-
-            list.checkItemsChecked = checkedItems;
-
-            angular.forEach(vm.card.checklists, function (item)
-            {
-                allCheckItems += item.checkItems.length;
-                allCheckedItems += item.checkItemsChecked;
-            });
-
-            vm.card.checkItems = allCheckItems;
-            vm.card.checkItemsChecked = allCheckedItems;
-        }
-
-        /**
-         * Add checklist item
-         *
-         * @param text
-         * @param checkList
-         */
-        function addCheckItem(text, checkList)
-        {
-            if ( !text || text === '' )
-            {
-                return;
-            }
-
-            var newCheckItem = {
-                'name'   : text,
-                'checked': false
+        function loadAll() {
+          var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
+                  Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
+                  Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
+                  Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
+                  North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
+                  South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
+                  Wisconsin, Wyoming';
+          return allStates.split(/, +/g).map( function (state) {
+            var x  = {
+              value: state.toLowerCase(),
+              display: state
             };
-
-            checkList.checkItems.push(newCheckItem);
-
-            updateCheckedCount(checkList);
+            // console.log(x);
+            return x;
+          });
         }
-
         /**
-         * Remove checklist
-         *
-         * @param item
+         * Create filter function for a query string
          */
-        function removeChecklist(item)
-        {
-            vm.card.checklists.splice(vm.card.checklists.indexOf(item), 1);
-
-            angular.forEach(vm.card.checklists, function (list)
-            {
-                updateCheckedCount(list);
-            });
+        function createFilterFor(query) {
+          var lowercaseQuery = angular.lowercase(query);
+          return function filterFn(state) {
+            return (state.value.indexOf(lowercaseQuery) === 0);
+          };
         }
 
-        /**
-         * Create checklist
-         */
-        function createCheckList()
-        {
-            vm.card.checklists.push({
-                id               : msUtils.guidGenerator(),
-                name             : vm.newCheckListTitle,
-                checkItemsChecked: 0,
-                checkItems       : []
-            });
+        // ******************************
+        // All the selection logic
+        // ******************************
 
-            vm.newCheckListTitle = '';
-        }
+        vm.sizes = [
+          "meat",
+          "veg"
 
-        /**
-         * Add new comment
-         *
-         * @param newCommentText
-         */
-        function addNewComment(newCommentText)
-        {
-            var newComment = {
-                idMember: '36027j1930450d8bf7b10158',
-                message : newCommentText,
-                time    : 'now'
-            };
+        ];
+        vm.toppings = [
+          { category: 'meat', name: 'Pepperoni' },
+          { category: 'meat', name: 'Sausage' },
+          { category: 'meat', name: 'Ground Beef' },
+          { category: 'meat', name: 'Bacon' },
+          { category: 'veg', name: 'Mushrooms' },
+          { category: 'veg', name: 'Onion' },
+          { category: 'veg', name: 'Green Pepper' },
+          { category: 'veg', name: 'Green Olives' }
+        ];
 
-            vm.card.comments.unshift(newComment);
-        }
+        vm.sizes1 = [
+          { category: 'meat', name: 'Pepperoni' },
+          { category: 'meat', name: 'Sausage' },
+          { category: 'meat', name: 'Ground Beef' },
+          { category: 'meat', name: 'Bacon' },
+          { category: 'veg', name: 'Mushrooms' },
+          { category: 'veg', name: 'Onion' },
+          { category: 'veg', name: 'Green Pepper' },
+          { category: 'veg', name: 'Green Olives' }
+        ];
+        vm.selectedToppings = '';
+        vm.size1 = '';
+        vm.clearValue = function() {
+          vm.size1 = undefined;
+          vm.selectedToppings = undefined;
+        };
 
-        /**
-         * Filter for chips
-         *
-         * @param query
-         * @returns {filterFn}
-         */
-        function createFilterFor(query)
-        {
-            var lowercaseQuery = angular.lowercase(query);
-            return function filterFn(item)
-            {
-                return angular.lowercase(item.name).indexOf(lowercaseQuery) >= 0;
-            };
-        }
+        // console.log(sharedProperties.getProperty1()," get the prop1");
+
+
+        vm.selectChanged1 = function(){
+          console.log("in selectChanged1",vm.size1);
+          // sharedProperties.setProperty1(vm.size1);
+        };
+        vm.selectChanged2 = function(){
+          console.log("in selectChanged2",vm.selectedToppings);
+          // sharedProperties.setProperty2(vm.selectedToppings);
+        };
     }
 })();

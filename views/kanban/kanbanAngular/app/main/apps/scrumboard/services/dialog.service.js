@@ -11,7 +11,7 @@
     {
         var service = {
           openCardDialog: openCardDialog,
-            openDynamicCardDialog: openDynamicCardDialog,
+          openDynamicCardDialog: openDynamicCardDialog
         };
 
         //////////

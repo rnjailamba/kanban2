@@ -7,7 +7,8 @@
         .controller('BoardViewController', BoardViewController);
 
     /** @ngInject */
-    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, BoardList, BoardService, CardFilters, DialogService)
+    function BoardViewController($document, $window, $timeout, $mdDialog, msUtils, BoardList,
+                                    BoardService, CardFilters, DialogService)
     {
         var vm = this;
 
