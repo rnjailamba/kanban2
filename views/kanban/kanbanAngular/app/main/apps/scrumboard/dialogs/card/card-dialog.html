@@ -9,13 +9,14 @@
             <div class="due-date">
                 <div ng-if="!vm.card.start" moment-picker="vm.card.start" format="x" min-view="year"
                      max-view="hour"
+                     max-date="vm.card.due"
                      start-view="month">
                     <md-button class="md-icon-button" aria-label="Start date" translate
                                translate-attr-aria-label="SB.DUE_DATE"
                                ng-click="$mdOpenMenu($event)">
                         <md-icon md-font-icon="icon-calendar"></md-icon>
                         <md-tooltip  md-direction="top" md-visible="vm.showTooltipStartDate">
-                            Start 
+                            Start
                         </md-tooltip>
                     </md-button>
                 </div>
@@ -44,6 +45,7 @@
             <div class="due-date">
                 <div ng-if="!vm.card.due" moment-picker="vm.card.due" format="x" min-view="year"
                      max-view="hour"
+                     min-date="vm.card.start"
                      start-view="month">
                     <md-button class="md-icon-button" aria-label="Due date" translate
                                translate-attr-aria-label="SB.DUE_DATE"
