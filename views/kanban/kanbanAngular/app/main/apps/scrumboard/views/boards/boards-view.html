@@ -25,18 +25,17 @@
             </div>
             <!-- / NEW PROJECT BUTTON -->
 
-            <label>Please enter your name: </label>
-            <input ng-model="currentCustomer.name"/>
-            <button ng-click="join()">Join</button>
-            <br/>
-
-            <h1>New Customers: </h1>
-            <ul>
-              <li ng-repeat="customer in newCustomers">{{customer.name}}</li>
-            </ul>            
-
         </div>
         <!-- / PROJECT LIST -->
+        <label>Please enter your name: </label>
+        <input ng-model="currentCustomer.name"/>
+        <button ng-click="join()">Join</button>
+        <br/>
+
+        <h1>New Customers: </h1>
+        <ul>
+          <li ng-repeat="customer in newCustomers">{{customer.name}}</li>
+        </ul>   
 
     </div>
     <!-- / PROJECT SELECTION -->
