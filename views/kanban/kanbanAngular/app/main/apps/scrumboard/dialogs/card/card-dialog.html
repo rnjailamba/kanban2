@@ -19,21 +19,7 @@
             </div>
             <!-- / START DATE -->
 
-            <!-- END DATE -->
-            <div class="due-date">
-                <div ng-if="!vm.card.due" moment-picker="vm.card.due" format="x" min-view="year"
-                     max-view="hour"
-                     start-view="month">
-                    <md-button class="md-icon-button" aria-label="Due date" translate
-                               translate-attr-aria-label="SB.DUE_DATE"
-                               ng-click="$mdOpenMenu($event)">
-                        <md-icon md-font-icon="icon-calendar"></md-icon>
-                    </md-button>
-                </div>
-            </div>
-            <!-- / END DATE -->
-
-            <md-menu ng-if="vm.card.start" md-offset="0 48" class="remove-due-date">
+            <md-menu ng-if="vm.card.start"  md-offset="0 48" class="remove-due-date">
                 <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
                     <md-icon md-font-icon="icon-calendar"></md-icon>
                 </md-button>
@@ -50,7 +36,22 @@
                 </md-menu-content>
             </md-menu>
 
-            <md-menu ng-if="vm.card.due" md-offset="0 48" class="remove-due-date">
+
+            <!-- END DATE -->
+            <div class="due-date">
+                <div ng-if="!vm.card.due" moment-picker="vm.card.due" format="x" min-view="year"
+                     max-view="hour"
+                     start-view="month">
+                    <md-button class="md-icon-button" aria-label="Due date" translate
+                               translate-attr-aria-label="SB.DUE_DATE"
+                               ng-click="$mdOpenMenu($event)">
+                        <md-icon md-font-icon="icon-calendar"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <!-- / END DATE -->
+
+            <md-menu ng-if="vm.card.due"  class="remove-due-date">
                 <md-button class="md-icon-button" aria-label="Members" ng-click="$mdOpenMenu($event)">
                     <md-icon md-font-icon="icon-calendar"></md-icon>
                 </md-button>
