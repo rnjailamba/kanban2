@@ -4,18 +4,16 @@
 
     angular
         .module('app.scrumboard')
-        .controller('ScrumboardCardDialogController', ScrumboardCardDialogController);
+        .controller('ScrumboardDynamicCardDialogController', ScrumboardDynamicCardDialogController);
 
     /** @ngInject */
-    function ScrumboardCardDialogController($document, $mdDialog, fuseTheming, fuseGenerator,
-                                                  msUtils, BoardService, cardId, DialogService)
+    function ScrumboardDynamicCardDialogController($document, $mdDialog, fuseTheming, fuseGenerator, msUtils, BoardService, cardId)
     {
         var vm = this;
 
         // Data
         vm.board = BoardService.data;
         vm.card = vm.board.cards.getById(cardId);
-        vm.cardId = cardId;
         vm.newLabelColor = 'red';
         vm.members = vm.board.members;
         vm.labels = vm.board.labels;
@@ -27,7 +25,6 @@
         vm.exists = msUtils.exists;
         vm.closeDialog = closeDialog;
         vm.finish = finish;
-        vm.finishNew = finishNew;
         vm.getCardList = getCardList;
         vm.removeCard = removeCard;
         /* Attachment */
@@ -48,9 +45,6 @@
         vm.createCheckList = createCheckList;
         /* Comment */
         vm.addNewComment = addNewComment;
-
-        vm.openDynamicCardDialog = DialogService.openDynamicCardDialog;
-
 
         /* Show tooltip */
         $timeout(function(){
@@ -77,17 +71,7 @@
             // console.log("in finish");
             $mdDialog.hide();
 
-        }
-
-
-        /**
-         * Save Dialog
-         */
-        function finishNew()
-        {
-            console.log("in finish new");
-
-        }
+        };
 
         /**
          * Get Card List

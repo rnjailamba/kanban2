@@ -10,7 +10,8 @@
     function DialogService($mdDialog, $document)
     {
         var service = {
-            openCardDialog: openCardDialog
+          openCardDialog: openCardDialog,
+            openDynamicCardDialog: openDynamicCardDialog,
         };
 
         //////////
@@ -26,6 +27,29 @@
             $mdDialog.show({
                 templateUrl        : 'app/main/apps/scrumboard/dialogs/card/card-dialog.html',
                 controller         : 'ScrumboardCardDialogController',
+                controllerAs       : 'vm',
+                parent             : $document.find('#scrumboard'),
+                targetEvent        : ev,
+                clickOutsideToClose: true,
+                escapeToClose      : true,
+                locals             : {
+                    cardId: cardId
+                }
+            });
+        }
+
+        /**
+         * Open dynamcic card dialog
+         *
+         * @param ev
+         * @param cardId
+         */
+        function openDynamicCardDialog(ev, cardId)
+        {
+            console.log("opening the dynamcic dialog",cardId);
+            $mdDialog.show({
+                templateUrl        : 'app/main/apps/scrumboard/dialogs/dynamicCard/dynamicCard-dialog.html',
+                controller         : 'ScrumboardDynamicCardDialogController',
                 controllerAs       : 'vm',
                 parent             : $document.find('#scrumboard'),
                 targetEvent        : ev,
