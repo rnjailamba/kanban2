@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.scrumboard', [])
+        .module('app.scrumboard', ['ngMaterial','schemaForm','angular.filter'])
         .config(config)
         .run(run);
 

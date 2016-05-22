@@ -22,12 +22,15 @@
         <link rel='stylesheet' href='bower_components/angular-xeditable/dist/css/xeditable.css' />
         <link rel='stylesheet' href='bower_components/moment-picker/dist/angular-moment-picker.min.css' />
         <link rel='stylesheet' href='bower_components/angular-ui-tree/dist/angular-ui-tree.css' />
+        <link rel='stylesheet' href='bower_components/angular-material/angular-material.css' />
+
         <!-- endbower -->
         <!-- endbuild -->
 
         <!-- build:css({.tmp/serve,src}) styles/app.css -->
         <!-- inject:css -->
         <link rel="stylesheet" href="views/kanban/kanbanAngular/css/kanban.css">
+        <link rel="stylesheet" href="views/kanban/kanbanAngular/css/overrideKanban.css">
         <!-- endinject -->
         <!-- endbuild -->
 
@@ -129,6 +132,14 @@
         <!-- <script src="bower_components/angular-gantt/assets/angular-gantt.js"></script> -->
         <!-- <script src="bower_components/angular-gantt/assets/angular-gantt-plugins.js"></script> -->
         <script src="bower_components/moment-range/dist/moment-range.js"></script>
+        <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+        <!-- <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script> -->
+        <script type="text/javascript" src="bower_components/tv4/tv4.js"></script>
+        <script type="text/javascript" src="bower_components/objectpath/lib/ObjectPath.js"></script>
+        <script type="text/javascript" src="bower_components/angular-schema-form/dist/schema-form.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular-schema-form/dist/bootstrap-decorator.js"></script>
+
+
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -224,6 +235,9 @@
         <script src="views/kanban/kanbanAngular/app/main/pages/pages.module.js"></script>
         <script src="views/kanban/kanbanAngular/app/main/components/components.module.js"></script>        <!-- endinject -->
         <script src="js/common/socket.io.js"></script>        <!-- socket.io -->
+
+
+
 
         <!-- inject:partials -->
         <!-- angular templates will be automatically converted in js and inserted here -->

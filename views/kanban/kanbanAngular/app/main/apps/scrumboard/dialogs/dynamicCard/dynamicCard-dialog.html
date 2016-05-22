@@ -1,4 +1,4 @@
-<md-dialog aria-label="Autocomplete Dialog Example" ng-cloak>
+<md-dialog class="dynamicCardDialog" aria-label="Autocomplete Dialog Example" ng-cloak>
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Autocomplete Dialog Example</h2>
@@ -86,7 +86,7 @@
 
       <md-tab label="two">
         <md-content class="md-padding">
-          <div ng-controller="FormController">
+          <div>
               <form sf-schema="schema" sf-form="form" sf-model="model"></form>
           </div>
         </md-content>
@@ -103,8 +103,4 @@
     </md-button>
   </md-dialog-actions>
 
-  <md-dialog-actions>
-        <div layout="row" id="toastBounds1">
-        </div>
-  </md-dialog-actions>
 </md-dialog>
