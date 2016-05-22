@@ -14,27 +14,11 @@
         <md-content class="md-padding">
           <div class="md-dialog-content">
             <form ng-submit="$event.preventDefault()">
-              <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.
+              <!-- <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.
                 <md-tooltip ng-if="vm.showTooltip" md-visible="vm..showTooltip" md-direction="left">
                   You have NOT entered something from the list.
                 </md-tooltip>
-              </p>
-              <md-autocomplete
-                  md-selected-item="vm.selectedItem"
-                  md-search-text="vm.searchText"
-                  md-items="item in vm.querySearch(vm.searchText)"
-                  md-item-text="item.display"
-                  md-min-length="0"
-                  placeholder="What is your favorite US state?">
-                <md-item-template>
-                  <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                </md-item-template >
-                <md-not-found>
-                  No states matching "{{vm.searchText}}" were found.
-                </md-not-found>
-              </md-autocomplete>
-
-
+              </p> -->
               <div class="md-padding" ng-cloak>
                 <div>
                   <h1 class="md-title">Select category and subcategory below
@@ -46,18 +30,18 @@
                   <div layout="row">
                     <md-input-container>
                       <label>Size Again</label>
-                      <md-select ng-model="size1" ng-change="selectChanged1()">
+                      <md-select ng-model="vm.size1" ng-change="vm.selectChanged1()">
                         <md-optgroup label="Sizes">
-                          <md-option ng-value="size.category" ng-repeat="size in sizes1 | filter: {name: selectedToppings } | unique:'category'">{{size.category}}</md-option>
+                          <md-option ng-value="size.category" ng-repeat="size in vm.sizes1 | filter: {name: vm.selectedToppings } | unique:'category'">{{size.category}}</md-option>
                         </md-optgroup>
                       </md-select>
                     </md-input-container>
 
                     <md-input-container>
                       <label>Topping</label>
-                      <md-select ng-model="selectedToppings" ng-change="selectChanged2()">
+                      <md-select ng-model="vm.selectedToppings" ng-change="vm.selectChanged2()">
                         <md-optgroup label="Subcategory">
-                          <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: size1 }">{{topping.name}}</md-option>
+                          <md-option ng-value="topping.name" ng-repeat="topping in vm.toppings | filter: {category: vm.size1 }">{{topping.name}}</md-option>
                         </md-optgroup>
                       </md-select>
                     </md-input-container>
@@ -65,11 +49,11 @@
 
 
                   </div>
-                    <p ng-if="selectedToppings">You ordered a {{size1.toLowerCase()}} pizza with
-                      {{selectedToppings.toLowerCase()}}.</p>
+                    <p ng-if="selectedToppings">You ordered a {{vm.size1.toLowerCase()}} pizza with
+                      {{vm.selectedToppings.toLowerCase()}}.</p>
                   </div>
                   <div layout="row">
-                    <md-button ng-click="clearValue()" ng-disabled="!size1 && !selectedToppings" style="margin-right: 20px;">Clear</md-button>
+                    <md-button ng-click="vm.clearValue()" ng-disabled="!vm.size1 && !vm.selectedToppings" style="margin-right: 20px;">Clear</md-button>
                   </div>
               </div>
 
