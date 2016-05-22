@@ -9,66 +9,68 @@
   </md-toolbar>
   <md-dialog-content>
 
-    <md-tabs md-dynamic-height>
-      <md-tab label="one">
-        <md-content class="md-padding">
-          <div class="md-dialog-content">
-            <form ng-submit="$event.preventDefault()">
-              <!-- <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.
-                <md-tooltip ng-if="vm.showTooltip" md-visible="vm..showTooltip" md-direction="left">
-                  You have NOT entered something from the list.
-                </md-tooltip>
-              </p> -->
-              <div class="md-padding" ng-cloak>
-                <div>
-                  <h1 class="md-title">Select category and subcategory below
-                    <md-tooltip ng-if="vm.showTooltip1" md-visible="vm.showTooltip1" md-direction="left">
-                      Please select from both dropdowns
-                    </md-tooltip>
+    <md-tabs md-selected="0" md-dynamic-height>
+      <md-tab>
+        <md-tab-body>
+          <md-content class="md-padding">
+            <div class="md-dialog-content">
+              <form ng-submit="$event.preventDefault()">
+                <!-- <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.
+                  <md-tooltip ng-if="vm.showTooltip" md-visible="vm..showTooltip" md-direction="left">
+                    You have NOT entered something from the list.
+                  </md-tooltip>
+                </p> -->
+                <div class="md-padding" ng-cloak>
+                  <div>
+                    <h1 class="md-title">Select category and subcategory below
+                      <md-tooltip ng-if="vm.showTooltip1" md-visible="vm.showTooltip1" md-direction="left">
+                        Please select from both dropdowns
+                      </md-tooltip>
 
-                  </h1>
-                  <div layout="row">
-                    <md-input-container>
-                      <label>Size Again</label>
-                      <md-select ng-model="vm.size1" ng-change="vm.selectChanged1()">
-                        <md-optgroup label="Sizes">
-                          <md-option ng-value="size.category" ng-repeat="size in vm.sizes1 | filter: {name: vm.selectedToppings } | unique:'category'">{{size.category}}</md-option>
-                        </md-optgroup>
-                      </md-select>
-                    </md-input-container>
+                    </h1>
+                    <div layout="row">
+                      <md-input-container>
+                        <label>Size Again</label>
+                        <md-select ng-model="vm.size1" ng-change="vm.selectChanged1()">
+                          <md-optgroup label="Sizes">
+                            <md-option ng-value="size.category" ng-repeat="size in vm.sizes1 | filter: {name: vm.selectedToppings } | unique:'category'">{{size.category}}</md-option>
+                          </md-optgroup>
+                        </md-select>
+                      </md-input-container>
 
-                    <md-input-container>
-                      <label>Topping</label>
-                      <md-select ng-model="vm.selectedToppings" ng-change="vm.selectChanged2()">
-                        <md-optgroup label="Subcategory">
-                          <md-option ng-value="topping.name" ng-repeat="topping in vm.toppings | filter: {category: vm.size1 }">{{topping.name}}</md-option>
-                        </md-optgroup>
-                      </md-select>
-                    </md-input-container>
+                      <md-input-container>
+                        <label>Topping</label>
+                        <md-select ng-model="vm.selectedToppings" ng-change="vm.selectChanged2()">
+                          <md-optgroup label="Subcategory">
+                            <md-option ng-value="topping.name" ng-repeat="topping in vm.toppings | filter: {category: vm.size1 }">{{topping.name}}</md-option>
+                          </md-optgroup>
+                        </md-select>
+                      </md-input-container>
 
 
 
-                  </div>
-                    <p ng-if="selectedToppings">You ordered a {{vm.size1.toLowerCase()}} pizza with
-                      {{vm.selectedToppings.toLowerCase()}}.</p>
-                  </div>
-                  <div layout="row">
-                    <md-button ng-click="vm.clearValue()" ng-disabled="!vm.size1 && !vm.selectedToppings" style="margin-right: 20px;">Clear</md-button>
-                  </div>
-              </div>
+                    </div>
+                      <p ng-if="selectedToppings">You ordered a {{vm.size1.toLowerCase()}} pizza with
+                        {{vm.selectedToppings.toLowerCase()}}.</p>
+                    </div>
+                    <div layout="row">
+                      <md-button ng-click="vm.clearValue()" ng-disabled="!vm.size1 && !vm.selectedToppings" style="margin-right: 20px;">Clear</md-button>
+                    </div>
+                </div>
 
-      <!--         <div layout="row" id="toastBounds">
-                  <br/>
-                  <br/>
-                  <br/>
-              </div>   -->
+        <!--         <div layout="row" id="toastBounds">
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>   -->
 
-            </form>
-          </div>
-        </md-content>
+              </form>
+            </div>
+          </md-content>
+        </md-tab-body>
       </md-tab>
 
-      <md-tab label="two">
+      <md-tab>
         <md-content class="md-padding">
           <div>
               <form sf-schema="schema" sf-form="form" sf-model="model"></form>
@@ -82,7 +84,7 @@
     </md-tabs>
   </md-dialog-content>
   <md-dialog-actions>
-    <md-button aria-label="Finished"  ng-click="vm.finish($event)">Finished
+    <md-button aria-label="Finished"  ng-click="vm.finish($event)">Next
 
     </md-button>
   </md-dialog-actions>
