@@ -7,13 +7,13 @@ module.exports.functions = {
     console.log("HELLO");
     return "hello";
   },
-       
+
   sayHelloInSpanish: function() {
     console.log("H0LLA");
   },
 
   isLoggedInWithRender: function(req,res,redisClient,pageToDisplay,extraParams) {
-    var customerId = req.cookies.customerId; 
+    var customerId = req.cookies.customerId;
     var ruid = req.cookies.ruid;
     var viewData = {};
     redisClient.get(ruid, function(err, reply) {
@@ -26,9 +26,9 @@ module.exports.functions = {
       else{
       	console.log("not logged in",customerId,reply);
         viewData = getViewData(extraParams,false);
-        res.render( "index/notLoggedIn",viewData );        
+        res.render( "index/notLoggedIn",viewData );
       }
-    }); 
+    });
     // console.log(ruid,customerId);
   },
 
@@ -37,7 +37,7 @@ module.exports.functions = {
   },
 
   getCustomerId: function(req,res){
-    return req.cookies.customerId; 
+    return req.cookies.customerId;
   }
 
 
@@ -47,7 +47,7 @@ module.exports.functions = {
 // IS LOGGED IN
 // ==============================================
 var isLoggedIn = function(req,res){
-  var customerId = req.cookies.customerId; 
+  var customerId = req.cookies.customerId;
   var ruid = req.cookies.ruid;
   redisClient.get(ruid, function(err, reply) {
     if( customerId == reply && reply != null && typeof customerId != 'undefined'){
@@ -58,15 +58,15 @@ var isLoggedIn = function(req,res){
       console.log("not logged in",customerId,reply);
       res.status(200).send(false);
     }
-  });    
+  });
 }
 
 
 // GET CUSOMTER ID
 // ==============================================
 var getCustomerId = function(req,res){
-  var customerId = req.cookies.customerId; 
-  return "customerId"; 
+  var customerId = req.cookies.customerId;
+  return "customerId";
 }
 
 
@@ -81,7 +81,7 @@ var getViewData = function(extraParams,isLoggedIn){
 
   if( extraParams != null && !isEmpty(extraParams) ){
     return mergeObjects(data,extraParams);
-  }     
+  }
   else{
     return data;
   }

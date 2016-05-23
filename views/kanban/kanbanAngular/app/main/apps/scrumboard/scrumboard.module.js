@@ -97,6 +97,9 @@
         // Api
         msApiProvider.register('scrumboard.boardList', ['/kanban/getProjects']);
         msApiProvider.register('scrumboard.board', ['/kanban/getProject/:id']);
+        msApiProvider.register('scrumboard.boards.board.getDropdownData', ['/kanban/getDropdownData']);
+        msApiProvider.register('scrumboard.boards.board.getDynamicForm', ['/kanban/getDynamicForm']);
+        msApiProvider.register('scrumboard.boards.board.submitDynamicForm', ['/kanban/submitDynamicForm']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('apps.scrumboard', {
