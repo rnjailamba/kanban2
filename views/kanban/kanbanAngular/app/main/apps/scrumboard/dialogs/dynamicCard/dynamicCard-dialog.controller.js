@@ -13,96 +13,12 @@
         var vm = this;
         vm.dynamicCardTabIndex = 0;
         vm.toppings = '';
-
-        activate();
-
-        ////////////
-
-        function activate() {
-            return DialogService.getDropdownData().then(function(data) {
-                vm.toppings = data["data"];
-            });
-        }
-
-        vm.sizes1 = [
-          { category: 'meat', name: 'Pepperoni' },
-          { category: 'meat', name: 'Sausage' },
-          { category: 'meat', name: 'Ground Beef' },
-          { category: 'meat', name: 'Bacon' },
-          { category: 'veg', name: 'Mushrooms' },
-          { category: 'veg', name: 'Onion' },
-          { category: 'veg', name: 'Green Pepper' },
-          { category: 'veg', name: 'Green Olives' }
-        ];
+        vm.sizes1 = '';
         vm.selectedToppings = '';
         vm.size1 = '';
         vm.model4 = {};
-        vm.schema =
-                        {
-                          "type": "object",
-                          "title": "Comment",
-                          "properties": {
-                            "name": {
-                              "title": "Name",
-                              "type": "string"
-                            },
-                            "email": {
-                              "title": "Email",
-                              "type": "string",
-                              "pattern": "^\\S+@\\S+$",
-                              "description": "Email will be used for evil."
-                            },
-                            "comment": {
-                              "title": "Comment",
-                              "type": "string",
-                              "maxLength": 20,
-                              "validationMessage": "Don't be greedy!"
-                            }
-                          },
-                          "required": [
-                            "name",
-                            "email",
-                            "comment"
-                          ]
-                        };
-
-        vm.form =
-            [
-              {
-                "type": "help",
-                "helpvalue": "<div class=\"alert alert-info\">Grid it up with bootstrap</div>"
-              },
-              {
-                "type": "section",
-                "htmlClass": "row",
-                "items": [
-                  {
-                    "type": "section",
-                    "htmlClass": "col-xs-6",
-                    "items": [
-                      "name"
-                    ]
-                  },
-                  {
-                    "type": "section",
-                    "htmlClass": "col-xs-6",
-                    "items": [
-                      "email"
-                    ]
-                  }
-                ]
-              },
-              {
-                "key": "comment",
-                "type": "textarea",
-                "placeholder": "Make a comment"
-              }
-              // ,{
-              //   "type": "submit",
-              //   "style": "btn-info",
-              //   "title": "OK"
-              // }
-            ]  ;
+        vm.schema = '';
+        vm.form = '';
 
 
         // ASSIGN FUNCTION
@@ -114,6 +30,26 @@
         vm.selectChanged1 = selectChanged1;
         vm.selectChanged2 = selectChanged2;
         vm.onSubmit = onSubmit;
+
+
+        assignDataToControllerVariablesDropdown();
+        assignDataToControllerVariablesForm();
+
+        ////////////
+        function assignDataToControllerVariablesDropdown() {
+            return DialogService.getDropdownData().then(function(data) {
+                vm.toppings = data["data"];
+                vm.sizes1 = data["data"];
+            });
+        }
+
+        ////////////
+        function assignDataToControllerVariablesForm() {
+            return DialogService.getDynamicFormData().then(function(data) {
+                vm.schema = data["schema"];
+                vm.form = (data["form"])["data"];
+            });
+        }
 
         // ON SUBMIT
         // ==============================================

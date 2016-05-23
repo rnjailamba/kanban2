@@ -33,9 +33,109 @@ module.exports.functions = {
           reject(error);
         });
     });
-  }
+  },
+  getDynamicFormPromise:function(){
+    return new Promise(function(resolve, reject){
+        var dynamicFormDataPromise = getDynamicFormPromise();
+        dynamicFormDataPromise.then(function(data) {
+          resolve(data);
+        }).catch(function(error){
+          reject(error);
+        });
+    });
+  },
 
 };
+
+
+// GET DROPDOWN DATA PROMISE
+// ==============================================
+var getDynamicFormPromise = function(){
+
+  var x = {
+
+              "schema":
+                      {
+                        "type": "object",
+                        "title": "Comment",
+                        "properties": {
+                          "name": {
+                            "title": "Name",
+                            "type": "string"
+                          },
+                          "email": {
+                            "title": "Email",
+                            "type": "string",
+                            "pattern": "^\\S+@\\S+$",
+                            "description": "Email will be used for evil."
+                          },
+                          "comment": {
+                            "title": "Comment",
+                            "type": "string",
+                            "maxLength": 20,
+                            "validationMessage": "Don't be greedy!"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "email",
+                          "comment"
+                        ]
+                      },
+              "form":{
+                        "data":
+                            [
+                              {
+                                "type": "help",
+                                "helpvalue": "<div class=\"alert alert-info\">Grid it up with bootstrap</div>"
+                              },
+                              {
+                                "type": "section",
+                                "htmlClass": "row",
+                                "items": [
+                                  {
+                                    "type": "section",
+                                    "htmlClass": "col-xs-6",
+                                    "items": [
+                                      "name"
+                                    ]
+                                  },
+                                  {
+                                    "type": "section",
+                                    "htmlClass": "col-xs-6",
+                                    "items": [
+                                      "email"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "key": "comment",
+                                "type": "textarea",
+                                "placeholder": "Make a comment"
+                              }
+                              // ,{
+                              //   "type": "submit",
+                              //   "style": "btn-info",
+                              //   "title": "OK"
+                              // }
+                            ]
+                      }
+
+    };
+
+  return new Promise(function(resolve, reject){
+
+    if( x ){
+      resolve(x);
+    }
+    else{
+      reject("error");
+    }
+
+  });
+
+}
 
 
 // GET DROPDOWN DATA PROMISE

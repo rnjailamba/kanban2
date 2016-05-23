@@ -12,7 +12,8 @@
         var service = {
           openCardDialog: openCardDialog,
           openDynamicCardDialog: openDynamicCardDialog,
-          getDropdownData: getDropdownData
+          getDropdownData: getDropdownData,
+          getDynamicFormData: getDynamicFormData
         };
 
         //////////
@@ -96,6 +97,43 @@
 
             return deferred.promise;
         }
+
+        /**
+         * GET DYNAMIC FORM DATA
+         *
+         * @param ev
+         * @param cardId
+         */
+        function getDynamicFormData()
+        {
+            console.log("in getDynamicFormData");
+            // Create a new deferred object
+            var deferred = $q.defer();
+
+            msApi.request('scrumboard.boards.board.getDynamicForm@get',{},
+
+                // SUCCESS
+                function (response)
+                {
+                    // Attach the data
+                    service.data = response.data;
+
+                    // Resolve the promise
+                    deferred.resolve(response);
+                },
+
+                // ERROR
+                function (response)
+                {
+                    // Reject the promise
+                    deferred.reject(response);
+                }
+            );
+
+            return deferred.promise;
+        }
+
+
 
         return service;
     }

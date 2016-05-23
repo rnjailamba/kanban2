@@ -61,7 +61,6 @@ router.get('/getDynamicForm', function(req, res, next) {
 // ==============================================
 router.get('/getDropdownData', function(req, res, next) {
 
-  console.log("in get dropdown data");
   var dropdownDataPromise = kanbanApi.functions.getDropdownDataPromise();
   dropdownDataPromise.then(function(data) {
       res.status(200).send(data);
