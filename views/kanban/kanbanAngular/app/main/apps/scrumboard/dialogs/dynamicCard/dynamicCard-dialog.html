@@ -9,24 +9,19 @@
   </md-toolbar>
   <md-dialog-content>
 
-    <md-tabs md-selected="0" md-dynamic-height>
+    <md-tabs md-selected="vm.dynamicCardTabIndex" md-dynamic-height>
+
       <md-tab>
         <md-tab-body>
           <md-content class="md-padding">
             <div class="md-dialog-content">
               <form ng-submit="$event.preventDefault()">
-                <!-- <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.
-                  <md-tooltip ng-if="vm.showTooltip" md-visible="vm..showTooltip" md-direction="left">
-                    You have NOT entered something from the list.
-                  </md-tooltip>
-                </p> -->
                 <div class="md-padding" ng-cloak>
                   <div>
                     <h1 class="md-title">Select category and subcategory below
                       <md-tooltip ng-if="vm.showTooltip1" md-visible="vm.showTooltip1" md-direction="left">
                         Please select from both dropdowns
                       </md-tooltip>
-
                     </h1>
                     <div layout="row">
                       <md-input-container>
@@ -47,8 +42,6 @@
                         </md-select>
                       </md-input-container>
 
-
-
                     </div>
                       <p ng-if="selectedToppings">You ordered a {{vm.size1.toLowerCase()}} pizza with
                         {{vm.selectedToppings.toLowerCase()}}.</p>
@@ -57,34 +50,37 @@
                       <md-button ng-click="vm.clearValue()" ng-disabled="!vm.size1 && !vm.selectedToppings" style="margin-right: 20px;">Clear</md-button>
                     </div>
                 </div>
-
-        <!--         <div layout="row" id="toastBounds">
-                    <br/>
-                    <br/>
-                    <br/>
-                </div>   -->
-
               </form>
             </div>
           </md-content>
         </md-tab-body>
       </md-tab>
 
+
+
       <md-tab>
-        <md-content class="md-padding">
-          <div>
-              <form sf-schema="schema" sf-form="form" sf-model="model"></form>
-          </div>
-        </md-content>
+        <md-tab-body>
+          <md-content class="md-padding">
+            <span>Hello</span>
+            <div>
+                <form name="myForm4"
+                      sf-schema="vm.schema"
+                      sf-form="vm.form"
+                      sf-model="vm.model4"
+                      ng-submit="vm.next(myForm4)"></form>
+                <div ng-show="myForm4.$valid" class=""><em>Form is valid</em></div>
+                <div ng-show="myForm4.$invalid" class="ng-hide"><em>Form is not valid</em></div>
+                <pre >{{vm.model4}}</pre>
+            </div>
+          </md-content>
+        </md-tab-body>
       </md-tab>
-
-
 
 
     </md-tabs>
   </md-dialog-content>
   <md-dialog-actions>
-    <md-button aria-label="Finished"  ng-click="vm.finish($event)">Next
+    <md-button id = "dynamicCardNext" aria-label="Next"  ng-click="vm.next(myForm4)">Next
 
     </md-button>
   </md-dialog-actions>

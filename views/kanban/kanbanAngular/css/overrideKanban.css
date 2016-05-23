@@ -1,7 +1,14 @@
+
+// DYNAMICCARDDIALOG
+// ==============================================
 md-dialog.dynamicCardDialog , .dynamicCardDialog md-dialog-content {
      padding: 0px;
 }
 
 .dynamicCardDialog md-tabs-canvas{
   height: 0px;
+}
+
+.dynamicCardDialog md-tab-content input{
+  border: 1px solid black;
 }
