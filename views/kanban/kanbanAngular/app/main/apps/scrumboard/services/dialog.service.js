@@ -7,11 +7,12 @@
         .factory('DialogService', DialogService);
 
     /** @ngInject */
-    function DialogService($mdDialog, $document)
+    function DialogService($mdDialog, $document, $q, msApi)
     {
         var service = {
           openCardDialog: openCardDialog,
-          openDynamicCardDialog: openDynamicCardDialog
+          openDynamicCardDialog: openDynamicCardDialog,
+          getDropdownData: getDropdownData
         };
 
         //////////
@@ -59,6 +60,41 @@
                     cardId: cardId
                 }
             });
+        }
+
+        /**
+         * Open dynamcic card dialog
+         *
+         * @param ev
+         * @param cardId
+         */
+        function getDropdownData()
+        {
+            console.log("in getDropdownData");
+            // Create a new deferred object
+            var deferred = $q.defer();
+
+            msApi.request('scrumboard.boards.board.getDropdownData@get',{},
+
+                // SUCCESS
+                function (response)
+                {
+                    // Attach the data
+                    service.data = response.data;
+
+                    // Resolve the promise
+                    deferred.resolve(response);
+                },
+
+                // ERROR
+                function (response)
+                {
+                    // Reject the promise
+                    deferred.reject(response);
+                }
+            );
+
+            return deferred.promise;
         }
 
         return service;

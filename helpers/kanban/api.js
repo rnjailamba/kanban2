@@ -3,33 +3,75 @@ var router = modules.express.Router();
 var redisClient = require('../exporters/export_redisClient').redisClient;
 
 module.exports.functions = {
-  getSingleProjectData:function() {
-    console.log("HELLO");
-    getSingleProjectData();
-  },
-  getAllProjects:function() {
-    console.log("HELLO");
-    getAllProjects();
-  },
-  getAllProjectsPromise:function(blogId,collectionNo){
 
+  getAllProjectsPromise:function(){
     return new Promise(function(resolve, reject){
-        var allProjectsPromise = getAllProjects();
+        var allProjectsPromise = getAllProjectsPromise();
         allProjectsPromise.then(function(data) {
           resolve(data);
         }).catch(function(error){
           reject(error);
         });
     });
-
+  },
+  getSingleProjectsPromise:function(){
+    return new Promise(function(resolve, reject){
+        var singleProjectsPromise = getSingleProjectsPromise();
+        singleProjectsPromise.then(function(data) {
+          resolve(data);
+        }).catch(function(error){
+          reject(error);
+        });
+    });
+  },
+  getDropdownDataPromise:function(){
+    return new Promise(function(resolve, reject){
+        var dropdownDataPromise = getDropdownDataPromise();
+        dropdownDataPromise.then(function(data) {
+          resolve(data);
+        }).catch(function(error){
+          reject(error);
+        });
+    });
   }
 
 };
 
 
+// GET DROPDOWN DATA PROMISE
+// ==============================================
+var getDropdownDataPromise = function(){
+
+  var x = {
+
+        "data":[
+                  { category: 'meat', name: 'Pepperoni' },
+                  { category: 'meat', name: 'Sausage' },
+                  { category: 'meat', name: 'Ground Beef' },
+                  { category: 'meat', name: 'Bacon' },
+                  { category: 'veg', name: 'Mushrooms' },
+                  { category: 'veg', name: 'Onion' },
+                  { category: 'veg', name: 'Green Pepper' },
+                  { category: 'veg', name: 'Green Olives' }
+                ]
+    };
+
+  return new Promise(function(resolve, reject){
+
+    if( x ){
+      resolve(x);
+    }
+    else{
+      reject("error");
+    }
+
+  });
+
+}
+
 // GET SINGLE PROJECT DATA
 // ==============================================
-var getSingleProjectData = function(){
+var getSingleProjectsPromise = function(){
 
   var x =
       {
@@ -233,12 +275,21 @@ var getSingleProjectData = function(){
               ]
           }
       };
-  return x;
-}
+      return new Promise(function(resolve, reject){
+
+        if( x ){
+          resolve(x);
+        }
+        else{
+          reject("error");
+        }
+
+      });}
+
 
 // GET ALL PROJECT DATA
 // ==============================================
-var getAllProjects = function(){
+var getAllProjectsPromise = function(){
 
   var x =
     {

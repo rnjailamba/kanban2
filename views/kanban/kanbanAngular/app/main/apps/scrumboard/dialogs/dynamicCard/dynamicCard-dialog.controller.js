@@ -8,20 +8,21 @@
 
     /** @ngInject */
     function ScrumboardDynamicCardDialogController($document, $mdDialog, fuseTheming, fuseGenerator, msUtils,
-                                                      BoardService, cardId, $mdToast, $scope)
+                                                      BoardService, cardId, $mdToast, $scope, DialogService)
     {
         var vm = this;
         vm.dynamicCardTabIndex = 0;
-        vm.toppings = [
-          { category: 'meat', name: 'Pepperoni' },
-          { category: 'meat', name: 'Sausage' },
-          { category: 'meat', name: 'Ground Beef' },
-          { category: 'meat', name: 'Bacon' },
-          { category: 'veg', name: 'Mushrooms' },
-          { category: 'veg', name: 'Onion' },
-          { category: 'veg', name: 'Green Pepper' },
-          { category: 'veg', name: 'Green Olives' }
-        ];
+        vm.toppings = '';
+
+        activate();
+
+        ////////////
+
+        function activate() {
+            return DialogService.getDropdownData().then(function(data) {
+                vm.toppings = data["data"];
+            });
+        }
 
         vm.sizes1 = [
           { category: 'meat', name: 'Pepperoni' },

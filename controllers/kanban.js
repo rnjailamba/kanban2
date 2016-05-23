@@ -20,7 +20,6 @@ router.get('/ping', function(req, res){
 router.get('/getProjects', function(req, res, next) {
 
   var allProjectsPromise = kanbanApi.functions.getAllProjectsPromise();
-
   allProjectsPromise.then(function(data) {
       res.status(200).send(data);
   }).catch(function(error){
@@ -34,10 +33,12 @@ router.get('/getProjects', function(req, res, next) {
 // ==============================================
 router.get('/getProject/:id', function(req, res, next) {
 
-  console.log("in get project",req.params.id);
-  var singleProject = kanbanApi.functions.getSingleProjectData();
-  // console.log(singleProject);
-  res.status(200).send(singleProject);
+  var singleProjectsPromise = kanbanApi.functions.getSingleProjectsPromise();
+  singleProjectsPromise.then(function(data) {
+      res.status(200).send(data);
+  }).catch(function(error){
+    reject(error);
+  });
 
 });
 
@@ -46,9 +47,12 @@ router.get('/getProject/:id', function(req, res, next) {
 // ==============================================
 router.get('/getDynamicForm', function(req, res, next) {
 
-  console.log("in getDynamicForm");
-  var dynamicForm = kanbanApi.functions.getDynamicForm();
-  res.status(200).send(dynamicForm);
+  var dynamicFormDataPromise = kanbanApi.functions.getDynamicFormPromise();
+  dynamicFormDataPromise.then(function(data) {
+      res.status(200).send(data);
+  }).catch(function(error){
+    reject(error);
+  });
 
 });
 
@@ -57,9 +61,13 @@ router.get('/getDynamicForm', function(req, res, next) {
 // ==============================================
 router.get('/getDropdownData', function(req, res, next) {
 
-  console.log("in getDropdownData");
-  var dropdownData = kanbanApi.functions.getDropdownData();
-  res.status(200).send(dropdownData);
+  console.log("in get dropdown data");
+  var dropdownDataPromise = kanbanApi.functions.getDropdownDataPromise();
+  dropdownDataPromise.then(function(data) {
+      res.status(200).send(data);
+  }).catch(function(error){
+    reject(error);
+  });
 
 });
 
