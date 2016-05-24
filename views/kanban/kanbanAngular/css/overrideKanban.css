@@ -12,3 +12,7 @@ md-dialog.dynamicCardDialog , .dynamicCardDialog md-dialog-content {
 .dynamicCardDialog md-tab-content input{
   border: 1px solid black;
 }
+
+.dynamicCardDialog{
+  width: 600px;
+}

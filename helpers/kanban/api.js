@@ -82,45 +82,44 @@ var getDynamicFormPromise = function(){
                           "comment"
                         ]
                       },
-              "form":{
-                        "data":
-                            [
-                              {
-                                "type": "help",
-                                "helpvalue": "<div class=\"alert alert-info\">Grid it up with bootstrap</div>"
-                              },
-                              {
-                                "type": "section",
-                                "htmlClass": "row",
-                                "items": [
-                                  {
-                                    "type": "section",
-                                    "htmlClass": "col-xs-6",
-                                    "items": [
-                                      "name"
-                                    ]
-                                  },
-                                  {
-                                    "type": "section",
-                                    "htmlClass": "col-xs-6",
-                                    "items": [
-                                      "email"
-                                    ]
-                                  }
-                                ]
-                              },
-                              {
-                                "key": "comment",
-                                "type": "textarea",
-                                "placeholder": "Make a comment"
-                              }
-                              // ,{
-                              //   "type": "submit",
-                              //   "style": "btn-info",
-                              //   "title": "OK"
-                              // }
-                            ]
-                      }
+              "form":
+                      [
+                        {
+                          "type": "help",
+                          "helpvalue": "<div class=\"alert alert-info\">Grid it up with bootstrap</div>"
+                        },
+                        {
+                          "type": "section",
+                          "htmlClass": "row",
+                          "items": [
+                            {
+                              "type": "section",
+                              "htmlClass": "col-xs-6",
+                              "items": [
+                                "name"
+                              ]
+                            },
+                            {
+                              "type": "section",
+                              "htmlClass": "col-xs-6",
+                              "items": [
+                                "email"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "key": "comment",
+                          "type": "textarea",
+                          "placeholder": "Make a comment"
+                        }
+                        // ,{
+                        //   "type": "submit",
+                        //   "style": "btn-info",
+                        //   "title": "OK"
+                        // }
+                      ]
+
 
     };
 

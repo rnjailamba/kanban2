@@ -20,6 +20,73 @@
         vm.schema = '';
         vm.form = '';
 
+        // vm.schema =
+        //                 {
+        //                   "type": "object",
+        //                   "title": "Comment",
+        //                   "properties": {
+        //                     "name": {
+        //                       "title": "Name",
+        //                       "type": "string"
+        //                     },
+        //                     "email": {
+        //                       "title": "Email",
+        //                       "type": "string",
+        //                       "pattern": "^\\S+@\\S+$",
+        //                       "description": "Email will be used for evil."
+        //                     },
+        //                     "comment": {
+        //                       "title": "Comment",
+        //                       "type": "string",
+        //                       "maxLength": 20,
+        //                       "validationMessage": "Don't be greedy!"
+        //                     }
+        //                   },
+        //                   "required": [
+        //                     "name",
+        //                     "email",
+        //                     "comment"
+        //                   ]
+        //                 };
+        //
+        // vm.form =
+        //     [
+        //       {
+        //         "type": "help",
+        //         "helpvalue": "<div class=\"alert alert-info\">Grid it up with bootstrap</div>"
+        //       },
+        //       {
+        //         "type": "section",
+        //         "htmlClass": "row",
+        //         "items": [
+        //           {
+        //             "type": "section",
+        //             "htmlClass": "col-xs-6",
+        //             "items": [
+        //               "name"
+        //             ]
+        //           },
+        //           {
+        //             "type": "section",
+        //             "htmlClass": "col-xs-6",
+        //             "items": [
+        //               "email"
+        //             ]
+        //           }
+        //         ]
+        //       },
+        //       {
+        //         "key": "comment",
+        //         "type": "textarea",
+        //         "placeholder": "Make a comment"
+        //       }
+        //       // ,{
+        //       //   "type": "submit",
+        //       //   "style": "btn-info",
+        //       //   "title": "OK"
+        //       // }
+        //     ]  ;
+
 
         // ASSIGN FUNCTION
         // ==============================================
@@ -31,13 +98,12 @@
         vm.selectChanged2 = selectChanged2;
         vm.onSubmit = onSubmit;
 
-
         assignDataToControllerVariablesDropdown();
         assignDataToControllerVariablesForm();
 
         ////////////
         function assignDataToControllerVariablesDropdown() {
-            return DialogService.getDropdownData().then(function(data) {
+             DialogService.getDropdownData().then(function(data) {
                 vm.toppings = data["data"];
                 vm.sizes1 = data["data"];
             });
@@ -45,11 +111,12 @@
 
         ////////////
         function assignDataToControllerVariablesForm() {
-            return DialogService.getDynamicFormData().then(function(data) {
+             DialogService.getDynamicFormData().then(function(data) {
                 vm.schema = data["schema"];
-                vm.form = (data["form"])["data"];
+                vm.form = data["form"];
             });
         }
+
 
         // ON SUBMIT
         // ==============================================
