@@ -521,7 +521,7 @@
                                 <input type="file" nv-file-select="" uploader="vm.uploader" multiple  /><br/>
                                 <!-- <p>Queue length: {{ vm.uploader.queue.length }}</p> -->
 
-                                <table class="table">
+                                <table class="table" ng-show="vm.uploader.queue.length">
                                     <thead>
                                         <tr>
                                             <th width="50%">Name</th>
@@ -569,7 +569,7 @@
                                     </tbody>
                                 </table>
 
-                                <div>
+                                <div ng-show="vm.uploader.queue.length">
                                     <div>
                                         Queue progress:
                                         <div class="progress" style="">
