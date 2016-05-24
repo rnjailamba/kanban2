@@ -506,9 +506,101 @@
                 <md-button class="add-attachment-button" aria-label="add attachment">
                     <div layout="row" layout-align="start center">
                         <i class="icon-plus s20"></i>
-                        <span translate="SB.ADD_AN_ATTACHMENT">Add an attachment</span>
+                        <span translate="">Add an attachmentt</span>
                     </div>
                 </md-button>
+                <body  nv-file-drop="" uploader="vm.uploader">
+
+                    <div class="container">
+
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+
+
+
+                            </div>
+
+                            <div class="col-md-9" style="margin-bottom: 40px">
+                                <h3>Select files</h3>
+                                <!-- Example: nv-file-select="" uploader="{Object}" options="{Object}" filters="{String}" -->
+                                <input type="file" nv-file-select="" uploader="vm.uploader" multiple  /><br/>
+                                <p>Queue length: {{ vm.uploader.queue.length }}</p>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th width="50%">Name</th>
+                                            <th ng-show="vm.uploader.isHTML5">Size</th>
+                                            <th ng-show="vm.uploader.isHTML5">Progress</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in vm.uploader.queue">
+                                            <td>
+                                                <strong>{{ item.file.name }}</strong>
+                                                <!-- Image preview -->
+                                                <!--auto height-->
+                                                <!--<div ng-thumb="{ file: item.file, width: 100 }"></div>-->
+                                                <!--auto width-->
+                                                <div ng-show="vm.uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                                                <!--fixed width and height -->
+                                                <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                                            </td>
+                                            <td ng-show="vm.uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                            <td ng-show="vm.uploader.isHTML5">
+                                                <div class="progress" style="margin-bottom: 0;">
+                                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                                <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                                <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                            </td>
+                                            <td nowrap>
+            <!--                                     <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                    <span class="glyphicon glyphicon-upload"></span> Upload
+                                                </button> -->
+                                                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                                    <span class="glyphicon glyphicon-trash"></span> Remove
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div>
+                                    <div>
+                                        Queue progress:
+                                        <div class="progress" style="">
+                                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
+                                        </div>
+                                    </div>
+            <!--                         <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload all
+                                    </button> -->
+                                    <button type="button" class="btn btn-warning btn-s" ng-click="vm.uploader.cancelAll()" ng-disabled="!vm.uploader.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-s" ng-click="vm.uploader.clearQueue()" ng-disabled="!vm.uploader.queue.length">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove all
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </body>
 
             </div>
             <!-- / ATTACHMENTS BUTTON -->
@@ -749,22 +841,12 @@
     <!-- / DIALOG CONTENT -->
 
     <!--  SAVE -->
-    <!-- <md-dialog-actions>
-      <md-button aria-label="Finished"  ng-click="vm.finish()">Save
-      </md-button>
-    </md-dialog-actions> -->
     <md-dialog-actions layout="row">
       <md-button href="http://en.wikipedia.org/wiki/Mango" class="md-raised" target="_blank">
         <md-icon md-font-icon="icon-plus"></md-icon>
         <span>Add Subtasks</span>
       </md-button>
-      <!-- <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank">
-        More on Wikipedia
-      </md-button> -->
       <span flex></span>
-      <!-- <md-button ng-click="answer('not useful')">
-       Not Useful
-      </md-button> -->
       <md-button ng-click="answer('useful')" style="margin-right:20px;" class="md-raised md-warn">
         Save Details
       </md-button>

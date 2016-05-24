@@ -28,10 +28,10 @@ var replacePlaceholder = function(fileName){
 
 
 var presignedURLForImageUpload = function(){
-    var params = {  Bucket: 'cementifyblogimages', 
-    				Key: replacePlaceholder("placeholder.jpg"),    
-    				ContentType: 'image;charset=UTF-8', 
-					ACL: 'public-read',    				
+    var params = {  Bucket: 'cementifyblogimages',
+    				Key: replacePlaceholder("placeholder.jpg"),
+    				ContentType: 'image;charset=UTF-8',
+					ACL: 'public-read',
     				Expires: 6000000};
     var url = s3.getSignedUrl('putObject', params);
     return url;
@@ -54,4 +54,3 @@ router.post('/getImageURL', function(req, res, next) {
 
 
 module.exports.router = router;
-
