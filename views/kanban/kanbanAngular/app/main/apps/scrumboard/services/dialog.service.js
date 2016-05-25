@@ -45,6 +45,7 @@
 
         function transition()
         {
+          if ( angular.element('md-dialog').hasClass('card-dialog') )
             $mdDialog.hide();
           // $state.transitionTo('app.scrumboard.boards.board',{id:$stateParams.id, uri:$stateParams.uri});
 

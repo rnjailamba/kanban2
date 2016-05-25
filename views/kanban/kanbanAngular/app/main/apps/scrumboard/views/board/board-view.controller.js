@@ -119,6 +119,7 @@
         vm.removeList = removeList;
         vm.cardFilter = cardFilter;
         vm.isOverdue = isOverdue;
+        vm.removeCard = removeCard;
 
         //////////
 
@@ -170,6 +171,59 @@
 
                 // Add the max height
                 listWrapperEl.find('.list-content').css({'max-height': maxHeight});
+            });
+        }
+
+        /**
+         * Get Card List
+         */
+        function getCardList(cardId)
+        {
+          console.log("in getCardList of bvc",vm.board.lists.length);
+
+            var response;
+            for ( var i = 0, len = vm.board.lists.length; i < len; i++ )
+            {
+                if ( vm.board.lists[i].idCards.indexOf(cardId) > -1 )
+                {
+                    response = vm.board.lists[i];
+                    break;
+                }
+            }
+            return response;
+        }
+
+        /**
+         * Remove card
+         *
+         * @param ev
+         */
+        function removeCard(ev,cardId)
+        {
+            console.log("in remove card of bvc");
+            var confirm = $mdDialog.confirm({
+                title              : 'Remove Card',
+                parent             : $document.find('#scrumboard'),
+                textContent        : 'Are you sure want to remove card?',
+                ariaLabel          : 'remove card',
+                targetEvent        : ev,
+                clickOutsideToClose: true,
+                escapeToClose      : true,
+                ok                 : 'Remove',
+                cancel             : 'Cancel'
+            });
+
+            $mdDialog.show(confirm).then(function ()
+            {
+                var cardList = getCardList(cardId);
+
+                cardList.idCards.splice(cardList.idCards.indexOf(cardId), 1);
+
+                vm.board.cards.splice(vm.board.cards.indexOf(vm.board.cards.getById(cardId)), 1);
+
+            }, function ()
+            {
+                // Canceled
             });
         }
 
