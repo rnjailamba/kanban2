@@ -66,6 +66,12 @@
                       function($stateParams, $state, DialogService) {
                         DialogService.openCardDialog($stateParams.cardId);
                       }
+                    ],
+                    onExit: ['DialogService',
+                      function( DialogService) {
+                        console.log("on exit");
+                        DialogService.transition();
+                      }
                     ]
                 }
             )

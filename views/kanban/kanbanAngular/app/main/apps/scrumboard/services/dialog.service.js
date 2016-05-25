@@ -13,6 +13,7 @@
           openCardDialog: openCardDialog,
           openDynamicCardDialog: openDynamicCardDialog,
           getDropdownData: getDropdownData,
+          transition: transition,
           getDynamicFormData: getDynamicFormData
         };
 
@@ -40,6 +41,13 @@
             }).finally(function() {
                 $state.transitionTo('app.scrumboard.boards.board',{id:$stateParams.id, uri:$stateParams.uri});
             });
+        }
+
+        function transition()
+        {
+            $mdDialog.hide();
+          // $state.transitionTo('app.scrumboard.boards.board',{id:$stateParams.id, uri:$stateParams.uri});
+
         }
 
         /**
