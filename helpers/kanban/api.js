@@ -186,14 +186,21 @@ var getSingleProjectsPromise = function(){
               "lists": [
                   {
                       "id": "56027cf5a2ca3839a5d36103",
-                      "name": "Designs",
+                      "name": "Backlog",
                       "idCards": [
                           "5603a2a3cab0c8300f6096b3"
                       ]
                   },
                   {
                       "id": "56127cf2a2ca3539g7d36103",
-                      "name": "Development",
+                      "name": "Current",
+                      "idCards": [
+                          "5637273da9b93bb84743a0f9"
+                      ]
+                  },
+                  {
+                      "id": "56227cf2a2ca3539g7d36103",
+                      "name": "Future",
                       "idCards": [
                           "5637273da9b93bb84743a0f9"
                       ]

@@ -25,15 +25,15 @@
                         <md-menu-item>
                             <md-button ng-click="vm.removeList($event,list)" aria-label="Remove List"
                                        translate translate-attr-aria-label="SB.REMOVE_LIST">
-                                <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
-                                <span translate="">Sorting One</span>
+                                <md-icon md-font-icon="icon-sort-descending" md-menu-align-target></md-icon>
+                                <span translate="">Sorting By Descending</span>
                             </md-button>
                         </md-menu-item>
                         <md-menu-item>
                             <md-button ng-click="vm.removeList($event,list)" aria-label="Remove List"
                                        translate translate-attr-aria-label="SB.REMOVE_LIST">
-                                <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
-                                <span translate="">Sorting Two</span>
+                                <md-icon md-font-icon="icon-sort-ascending" md-menu-align-target></md-icon>
+                                <span translate="">Sorting By Ascending</span>
                             </md-button>
                         </md-menu-item>
                     </md-menu-content>
@@ -81,10 +81,57 @@
                                 </span>
                             </div>
                             <!-- / CARD LABELS -->
+                            <div layout="row" layout-align="space-between center">
 
-                            <!-- CARD NAME -->
-                            <div class="list-card-name">{{vm.board.cards.getById(cardId).name}}</div>
-                            <!-- / CARD NAME -->
+                              <!-- CARD NAME -->
+                              <div class="list-card-name">{{vm.board.cards.getById(cardId).name}}</div>
+                              <!-- / CARD NAME -->
+
+
+                              <md-menu md-offset="0 60px" class="options list-header-option-button">
+
+                                  <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="Options"
+                                             translate translate-attr-aria-label="SB.OPTIONS">
+                                      <md-icon md-menu-origin md-font-icon="icon-dots-vertical"></md-icon>
+                                  </md-button>
+
+                                  <md-menu-content class="options-menu-content" width="4">
+                                      <md-menu-item>
+                                          <md-button ng-click="vm.removeList($event,list)" aria-label="Remove List"
+                                                     translate translate-attr-aria-label="SB.REMOVE_LIST">
+                                              <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
+                                              <span translate="">Move to Current</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="vm.removeList($event,list)" aria-label="Remove List"
+                                                     translate translate-attr-aria-label="SB.REMOVE_LIST">
+                                              <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
+                                              <span translate="">Move to Backlog</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="vm.removeList($event,list)" aria-label="Remove List"
+                                                     translate translate-attr-aria-label="SB.REMOVE_LIST">
+                                              <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
+                                              <span translate="">Move to Future</span>
+                                          </md-button>
+                                      </md-menu-item>
+                                      <md-menu-item>
+                                          <md-button ng-click="vm.removeList($event,list)" aria-label="Remove List"
+                                                     translate translate-attr-aria-label="SB.REMOVE_LIST">
+                                              <md-icon md-font-icon="icon-delete" md-menu-align-target></md-icon>
+                                              <span translate="">Remove Card</span>
+                                          </md-button>
+                                      </md-menu-item>
+
+                                  </md-menu-content>
+
+                              </md-menu>
+
+                            </div>
+
+
 
                             <div ng-if="vm.board.cards.getById(cardId).due || vm.board.cards.getById(cardId).checkItems"
                                  class="list-card-badges" layout="row" layout-align="start center">
