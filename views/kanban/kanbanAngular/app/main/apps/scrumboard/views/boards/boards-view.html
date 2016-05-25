@@ -8,6 +8,14 @@
         <!-- PROJECT LIST -->
         <div class="board-list" layout="row" layout-align="center center" layout-wrap>
 
+            <!-- NEW PROJECT BUTTON -->
+            <div class="board-list-item add-new-board" layout="column" layout-align="center center"
+                 ui-sref="app.scrumboard.boards.addBoard">
+                <md-icon md-font-icon="icon-plus-circle" class="icon s64"></md-icon>
+                <div class="board-name" translate="">Add new project</div>
+            </div>
+            <!-- / NEW PROJECT BUTTON -->
+
             <!-- PROJECT -->
             <div class="board-list-item" ng-repeat="board in vm.boardList"
                  ui-sref="app.scrumboard.boards.board({id:board.id, uri:board.uri})"
@@ -17,17 +25,9 @@
             </div>
             <!-- / PROJECT -->
 
-            <!-- NEW PROJECT BUTTON -->
-            <div class="board-list-item add-new-board" layout="column" layout-align="center center"
-                 ui-sref="app.scrumboard.boards.addBoard">
-                <md-icon md-font-icon="icon-plus-circle" class="icon s64"></md-icon>
-                <div class="board-name" translate="">Add new project</div>
-            </div>
-            <!-- / NEW PROJECT BUTTON -->
-
         </div>
         <!-- / PROJECT LIST -->
-        <label>Please enter your name: </label>
+        <!-- <label>Please enter your name: </label>
         <input ng-model="currentCustomer.name"/>
         <button ng-click="join()">Join</button>
         <br/>
@@ -35,7 +35,7 @@
         <h1>New Customers: </h1>
         <ul>
           <li ng-repeat="customer in newCustomers">{{customer.name}}</li>
-        </ul>
+        </ul> -->
 
     </div>
     <!-- / PROJECT SELECTION -->

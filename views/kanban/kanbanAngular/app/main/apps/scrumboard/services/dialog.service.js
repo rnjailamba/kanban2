@@ -7,7 +7,7 @@
         .factory('DialogService', DialogService);
 
     /** @ngInject */
-    function DialogService($mdDialog, $document, $q, msApi)
+    function DialogService($mdDialog, $document, $q, msApi, $state, $stateParams)
     {
         var service = {
           openCardDialog: openCardDialog,
@@ -24,19 +24,21 @@
          * @param ev
          * @param cardId
          */
-        function openCardDialog(ev, cardId)
+        function openCardDialog( cardId)
         {
             $mdDialog.show({
                 templateUrl        : 'app/main/apps/scrumboard/dialogs/card/card-dialog.html',
                 controller         : 'ScrumboardCardDialogController',
                 controllerAs       : 'vm',
                 parent             : $document.find('#scrumboard'),
-                targetEvent        : ev,
+                // targetEvent        : ev,
                 clickOutsideToClose: true,
                 escapeToClose      : true,
                 locals             : {
                     cardId: cardId
                 }
+            }).finally(function() {
+                $state.transitionTo('app.scrumboard.boards.board',{id:$stateParams.id, uri:$stateParams.uri});
             });
         }
 

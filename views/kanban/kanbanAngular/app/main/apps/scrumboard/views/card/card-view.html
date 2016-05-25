@@ -51,7 +51,7 @@
                     <!-- CARD -->
                     <div ng-if="cardId" class="list-card md-whiteframe-2dp"
                          ng-repeat="cardId in list.idCards | filter: vm.cardFilter track by $index"
-                         ui-sref="app.scrumboard.boards.board.card({cardId:cardId})">
+                         ng-click="vm.openCardDialog($event, cardId)">
 
                         <!-- CARD COVER -->
                         <!-- <div ng-if="vm.board.settings.cardCoverImages && vm.board.cards.getById(cardId).idAttachmentCover"

@@ -40,11 +40,11 @@
             .state('app.scrumboard.boards.board', {
                     url    : '/:id/:uri',
                     views  : {
-                        'content@app'                                  : {
+                        'content@app' : {
                             templateUrl: 'app/main/apps/scrumboard/scrumboard.html',
                             controller : 'ScrumboardController as vm'
                         },
-                        'scrumboardContent@app.scrumboard.boards.board': {
+                        'scrumboardContent@app.scrumboard.boards.board' : {
                             templateUrl: 'app/main/apps/scrumboard/views/board/board-view.html',
                             controller : 'BoardViewController as vm'
                         }
@@ -55,6 +55,18 @@
                             return BoardService.getBoardData($stateParams.id);
                         }
                     }
+                }
+            )
+
+            // Card
+            .state('app.scrumboard.boards.board.card', {
+                    url    : '/card/:cardId',
+                    // trigger the modal to open when this route is active
+                    onEnter: ['$stateParams', '$state' , 'DialogService',
+                      function($stateParams, $state, DialogService) {
+                        DialogService.openCardDialog($stateParams.cardId);
+                      }
+                    ]
                 }
             )
 
