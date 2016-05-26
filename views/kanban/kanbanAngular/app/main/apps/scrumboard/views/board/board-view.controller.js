@@ -156,39 +156,18 @@
         /**
          * Add New Card To A List
          */
-        function addNewCard(listName)
+        function addNewCard(listName,cardId)
         {
             var newCardName = 'newww';
 
             var newCardId = msUtils.guidGenerator();
             var cards = vm.board.cards;
-
-            cards.push({
-                id               : newCardId,
-                name             : newCardName,
-                description      : '',
-                idAttachmentCover: '',
-                idMembers        : [],
-                idLabels         : [],
-                attachments      : [],
-                subscribed       : false,
-                checklists       : [],
-                checkItems       : 0,
-                checkItemsChecked: 0,
-                comments         : [],
-                activities       : [],
-                due              : null
-            });
+            var card = cards.getById(cardId);
+            // console.log(card,"card");
+            cards.push(card);
             var list = vm.board.lists.getByName(listName);
+            list.idCards.push(card.id);
 
-            list.idCards.push(newCardId);
-
-            // $timeout(function ()
-            // {
-            //     scrollListContentBottom();
-            // });
-
-            // newCardName = '';
         }
 
         /**
@@ -199,7 +178,7 @@
         function moveCurrent(ev,cardId,listId)
         {
           console.log("in move current", cardId, " ", listId);
-          addNewCard("Current");
+          addNewCard("Current",cardId);
         }
 
         /**
@@ -209,7 +188,7 @@
          */
         function moveBacklog(ev,cardId,listId)
         {
-          addNewCard("Backlog");
+          addNewCard("Backlog",cardId);
 
         }
 
@@ -220,7 +199,7 @@
          */
         function moveFuture(ev,cardId,listId)
         {
-          addNewCard("Future");
+          addNewCard("Future",cardId);
 
         }
 
@@ -231,7 +210,7 @@
          */
         function moveDone(ev,cardId,listId)
         {
-          addNewCard("done");
+          addNewCard("Done",cardId);
 
         }
 
