@@ -158,7 +158,6 @@
          */
         function addNewCard(listName,cardId,card)
         {
-            var newCardName = 'newww';
             var cards = vm.board.cards;
             var newCardId = msUtils.guidGenerator();
             // console.log(card,"card");
