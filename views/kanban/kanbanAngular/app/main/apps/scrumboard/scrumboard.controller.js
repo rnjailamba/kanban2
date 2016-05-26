@@ -7,7 +7,7 @@
         .controller('ScrumboardController', ScrumboardController);
 
     /** @ngInject */
-    function ScrumboardController($mdSidenav, BoardService, BoardList, CardFilters)
+    function ScrumboardController($mdSidenav, BoardService, BoardList, CardFilters, $cookies)
     {
         var vm = this;
 
@@ -24,6 +24,10 @@
         vm.filteringIsOn = CardFilters.isOn;
 
         ////////
+        // $cookies.get('tab');
+        $cookies.put('tab', "fdfdfd");
+        // console.log($cookies.get('tab'));
+
 
         /**
          * Update Board Uri
