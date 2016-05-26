@@ -67,5 +67,23 @@
             })[0];
         };
 
+        /**
+         * Array prototype
+         *
+         * Get by name
+         *
+         * @param value
+         * @returns {T}
+         */
+        Array.prototype.getByName = function (value)
+        {
+          console.log("in get by name",value,this);
+
+            return this.filter(function (x)
+            {
+                return x.name === value;
+            })[0];
+        };
+
     }
 })();

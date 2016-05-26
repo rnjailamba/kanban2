@@ -120,6 +120,10 @@
         vm.cardFilter = cardFilter;
         vm.isOverdue = isOverdue;
         vm.removeCard = removeCard;
+        vm.moveCurrent = moveCurrent;
+        vm.moveBacklog = moveBacklog;
+        vm.moveFuture = moveFuture;
+        vm.moveDone = moveDone;
 
         //////////
 
@@ -146,6 +150,88 @@
                     };
                 }
             }, 0);
+
+        }
+
+        /**
+         * Add New Card To A List
+         */
+        function addNewCard(listName)
+        {
+            var newCardName = 'newww';
+
+            var newCardId = msUtils.guidGenerator();
+            var cards = vm.board.cards;
+
+            cards.push({
+                id               : newCardId,
+                name             : newCardName,
+                description      : '',
+                idAttachmentCover: '',
+                idMembers        : [],
+                idLabels         : [],
+                attachments      : [],
+                subscribed       : false,
+                checklists       : [],
+                checkItems       : 0,
+                checkItemsChecked: 0,
+                comments         : [],
+                activities       : [],
+                due              : null
+            });
+            var list = vm.board.lists.getByName(listName);
+
+            list.idCards.push(newCardId);
+
+            // $timeout(function ()
+            // {
+            //     scrollListContentBottom();
+            // });
+
+            // newCardName = '';
+        }
+
+        /**
+         * Move Current
+         *
+         * @param ev
+         */
+        function moveCurrent(ev,cardId,listId)
+        {
+          console.log("in move current", cardId, " ", listId);
+          addNewCard("Current");
+        }
+
+        /**
+         * Move Backlog
+         *
+         * @param ev
+         */
+        function moveBacklog(ev,cardId,listId)
+        {
+          addNewCard("Backlog");
+
+        }
+
+        /**
+         * Move Future
+         *
+         * @param ev
+         */
+        function moveFuture(ev,cardId,listId)
+        {
+          addNewCard("Future");
+
+        }
+
+        /**
+         * Move Done
+         *
+         * @param ev
+         */
+        function moveDone(ev,cardId,listId)
+        {
+          addNewCard("done");
 
         }
 

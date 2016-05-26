@@ -15,7 +15,9 @@
         vm.newCardName = '';
         vm.listId = $scope.msListId;
         vm.board = BoardService.data;
+        // console.log(vm.board,"vm.board");
         vm.cards = vm.board.cards;
+        // console.log(vm.listId,"vm.listId");
         vm.list = vm.board.lists.getById(vm.listId);
 
         // Methods

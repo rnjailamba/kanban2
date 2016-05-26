@@ -97,28 +97,28 @@
 
                                   <md-menu-content class="options-menu-content" width="4">
                                       <md-menu-item>
-                                          <md-button ng-click="vm.moveCurrent($event,cardId)" aria-label="Remove List"
+                                          <md-button ng-click="vm.moveCurrent($event,cardId,list.id)" aria-label="Remove List"
                                                      translate translate-attr-aria-label="SB.REMOVE_LIST">
                                               <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
                                               <span translate="">Move to Current</span>
                                           </md-button>
                                       </md-menu-item>
                                       <md-menu-item>
-                                          <md-button ng-click="vm.moveBacklog($event,cardId)" aria-label="Remove List"
+                                          <md-button ng-click="vm.moveBacklog($event,cardId,list.id)" aria-label="Remove List"
                                                      translate translate-attr-aria-label="SB.REMOVE_LIST">
                                               <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
                                               <span translate="">Move to Backlog</span>
                                           </md-button>
                                       </md-menu-item>
                                       <md-menu-item>
-                                          <md-button ng-click="vm.moveFuture($event,cardId)" aria-label="Remove List"
+                                          <md-button ng-click="vm.moveFuture($event,cardId,list.id)" aria-label="Remove List"
                                                      translate translate-attr-aria-label="SB.REMOVE_LIST">
                                               <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
                                               <span translate="">Move to Future</span>
                                           </md-button>
                                       </md-menu-item>
                                       <md-menu-item>
-                                          <md-button ng-click="vm.moveDone($event,cardId)" aria-label="Remove List"
+                                          <md-button ng-click="vm.moveDone($event,cardId,list.id)" aria-label="Remove List"
                                                      translate translate-attr-aria-label="SB.REMOVE_LIST">
                                               <md-icon md-font-icon="icon-directions" md-menu-align-target></md-icon>
                                               <span translate="">Move to Done</span>
