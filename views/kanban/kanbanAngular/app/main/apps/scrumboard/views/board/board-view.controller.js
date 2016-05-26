@@ -156,17 +156,16 @@
         /**
          * Add New Card To A List
          */
-        function addNewCard(listName,cardId)
+        function addNewCard(listName,cardId,card)
         {
             var newCardName = 'newww';
-
-            var newCardId = msUtils.guidGenerator();
             var cards = vm.board.cards;
-            var card = cards.getById(cardId);
+            var newCardId = msUtils.guidGenerator();
             // console.log(card,"card");
             cards.push(card);
             var list = vm.board.lists.getByName(listName);
             list.idCards.push(card.id);
+            // console.log("vm.board after add", vm.board);
 
         }
 
@@ -177,8 +176,15 @@
          */
         function moveCurrent(ev,cardId,listId)
         {
-          console.log("in move current", cardId, " ", listId);
-          addNewCard("Current",cardId);
+          // console.log("in move current", cardId, " ", listId);
+          var cards = vm.board.cards;
+          var card = cards.getById(cardId);
+          removeCardWithoutWarning("",cardId);
+          $timeout(function ()
+          {
+            addNewCard("Current",cardId,card);
+
+          },1);
         }
 
         /**
@@ -188,8 +194,14 @@
          */
         function moveBacklog(ev,cardId,listId)
         {
-          addNewCard("Backlog",cardId);
+          var cards = vm.board.cards;
+          var card = cards.getById(cardId);
+          removeCardWithoutWarning("",cardId);
+          $timeout(function ()
+          {
+            addNewCard("Backlog",cardId,card);
 
+          },1);
         }
 
         /**
@@ -199,8 +211,15 @@
          */
         function moveFuture(ev,cardId,listId)
         {
-          addNewCard("Future",cardId);
+          var cards = vm.board.cards;
+          var card = cards.getById(cardId);
+          removeCardWithoutWarning("",cardId);
 
+          $timeout(function ()
+          {
+            addNewCard("Future",cardId,card);
+
+          },1);
         }
 
         /**
@@ -210,8 +229,14 @@
          */
         function moveDone(ev,cardId,listId)
         {
-          addNewCard("Done",cardId);
+          var cards = vm.board.cards;
+          var card = cards.getById(cardId);
+          removeCardWithoutWarning("",cardId);
+          $timeout(function ()
+          {
+            addNewCard("Done",cardId,card);
 
+          },1);
         }
 
         /**
@@ -244,7 +269,7 @@
          */
         function getCardList(cardId)
         {
-          console.log("in getCardList of bvc",vm.board.lists.length);
+          // console.log("in getCardList of bvc",vm.board.lists.length);
 
             var response;
             for ( var i = 0, len = vm.board.lists.length; i < len; i++ )
@@ -285,11 +310,44 @@
                 cardList.idCards.splice(cardList.idCards.indexOf(cardId), 1);
 
                 vm.board.cards.splice(vm.board.cards.indexOf(vm.board.cards.getById(cardId)), 1);
+                // console.log("vm.board after remove", vm.board);
+
 
             }, function ()
             {
                 // Canceled
             });
+
+        }
+
+        /**
+         * Remove card without warning
+         *
+         * @param ev
+         */
+        function removeCardWithoutWarning(ev,cardId)
+        {
+            var confirm = $mdDialog.confirm({
+                title              : 'Remove Card',
+                parent             : $document.find('#scrumboard'),
+                textContent        : 'Are you sure want to remove card?',
+                ariaLabel          : 'remove card',
+                targetEvent        : ev,
+                clickOutsideToClose: true,
+                escapeToClose      : true,
+                ok                 : 'Remove',
+                cancel             : 'Cancel'
+            });
+
+
+            var cardList = getCardList(cardId);
+
+            cardList.idCards.splice(cardList.idCards.indexOf(cardId), 1);
+
+            vm.board.cards.splice(vm.board.cards.indexOf(vm.board.cards.getById(cardId)), 1);
+            console.log("vm.board after remove", vm.board);
+
+
         }
 
         /**
