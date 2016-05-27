@@ -108,6 +108,18 @@
                     title: 'Meeting',
                     start: new Date(y, m, d + 22, 4, 0),
                     end  : new Date(y, m, d + 24, 4, 0)
+                },
+                {
+                    id   : 16,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d + 14, 4, 0),
+                    end  : null
+                },
+                {
+                    id   : 17,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d + 14, 4, 0),
+                    end  : null
                 }
             ]
         ];
@@ -123,6 +135,7 @@
                 dayNamesShort     : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
                 viewRender        : function (view)
                 {
+                    console.log("In calendar viewRender function");
                     vm.calendarView = view;
                     vm.calendar = vm.calendarView.calendar;
                     vm.currentMonthShort = vm.calendar.getDate().format('MMM');
