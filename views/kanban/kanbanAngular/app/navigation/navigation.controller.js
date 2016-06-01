@@ -7,7 +7,7 @@
         .controller('NavigationController', NavigationController);
 
     /** @ngInject */
-    function NavigationController($scope)
+    function NavigationController($scope, $rootScope, $state)
     {
         var vm = this;
 
@@ -17,9 +17,11 @@
         vm.msScrollOptions = {
             suppressScrollX: true
         };
+        // console.log(" in navigation controller");
 
         // Methods
         vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
+        vm.hideConditionsForSideNav = hideConditionsForSideNav;
 
         //////////
 
@@ -36,6 +38,19 @@
         {
             vm.bodyEl.removeClass('ms-navigation-horizontal-mobile-menu-active');
         });
+
+        /**
+         * Hide Conditions
+         */
+        function hideConditionsForSideNav()
+        {
+            // console.log("in hideConditions",$state.current.name);
+            if( $state.current.name == ('app.scrumboard.boards') )
+              return true;
+            else {
+                return false;
+            }
+        }
     }
 
 })();

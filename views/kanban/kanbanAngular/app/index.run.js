@@ -24,11 +24,15 @@
             });
         });
 
-        $rootScope.$on("$stateChangeError", console.log.bind(console));
+        $rootScope.$on('$stateChangeStart',
+        function(event, toState, toParams, fromState, fromParams){
+            // do something
+            // console.log(toState,"stateee");
+            $rootScope.state = toState;
 
+        })
         // Store state in the root scope for easy access
         $rootScope.state = $state;
-        // console.log($state,"state");
 
         // Cleanup
         $rootScope.$on('$destroy', function ()
