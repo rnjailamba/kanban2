@@ -4,8 +4,29 @@
         <span class="logo-text">CEMENTIFY</span>
     </div>
 
-    <md-icon class="fold-toggle s18" md-font-icon="icon-backburger" show-gt-sm
-             ng-click="vm.toggleMsNavigationFolded()"></md-icon>
+    <!-- <md-icon class="fold-toggle s18" md-font-icon="icon-backburger" show-gt-sm
+             ng-click="vm.toggleMsNavigationFolded()"></md-icon> -->
+    <!-- <md-icon class="fold-toggle s18" md-font-icon="icon-chevron-down" show-gt-sm
+            ng-click=""></md-icon> -->
+    <md-menu>
+      <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+        <md-icon md-menu-origin="" md-font-icon="icon-chevron-down" ></md-icon>
+      </md-button>
+      <md-menu-content width="3">
+        <md-menu-item >
+          <md-button ng-click="ctrl.announceClick($index)">
+            <md-icon md-menu-align-target="" md-svg-icon="call:no-sim"></md-icon>
+            All Projects
+          </md-button>
+        </md-menu-item>
+        <md-menu-item ng-repeat="item in [1, 2, 3]">
+          <md-button ng-click="ctrl.announceClick($index)">
+            <md-icon md-menu-align-target="" md-svg-icon="call:no-sim"></md-icon>
+            Project {{item}}
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
 </md-toolbar>
 
 <ms-navigation class="scrollable" folded="vm.folded" ms-scroll="vm.msScrollOptions"></ms-navigation>
