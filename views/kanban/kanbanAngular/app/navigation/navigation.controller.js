@@ -22,7 +22,7 @@
         // Methods
         vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
         vm.hideConditionsForSideNav = hideConditionsForSideNav;
-
+        vm.allProjects = allProjects;
         //////////
 
         /**
@@ -38,6 +38,15 @@
         {
             vm.bodyEl.removeClass('ms-navigation-horizontal-mobile-menu-active');
         });
+
+        /**
+         * Go to all projects
+         */
+        function allProjects()
+        {
+            $state.transitionTo('app.scrumboard.boards');
+        }
+
 
         /**
          * Hide Conditions
