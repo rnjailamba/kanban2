@@ -45,8 +45,9 @@
         function hideConditionsForSideNav()
         {
             // console.log("in hideConditions",$state.current.name);
-            if( $state.current.name == ('app.scrumboard.boards') )
-              return true;
+            if( $state.current.name == ('app.scrumboard.boards') ){
+                return true;
+            }
             else {
                 return false;
             }

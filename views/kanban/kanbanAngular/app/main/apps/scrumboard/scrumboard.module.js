@@ -119,13 +119,13 @@
         msApiProvider.register('scrumboard.boards.board.getDynamicForm', ['/kanban/getDynamicForm']);
         msApiProvider.register('scrumboard.boards.board.submitDynamicForm', ['/kanban/submitDynamicForm']);
 
-        // Navigation
-        msNavigationServiceProvider.saveItem('apps.scrumboard', {
-            title : 'Scrumboard',
-            icon  : 'icon-home',
-            state : 'app.scrumboard.boards',
-            weight: 6
-        });
+        // // Navigation
+        // msNavigationServiceProvider.saveItem('apps.scrumboard', {
+        //     title : 'Scrumboard',
+        //     icon  : 'icon-home',
+        //     state : 'app.scrumboard.boards',
+        //     weight: 6
+        // });
     }
 
     /** @ngInject */
