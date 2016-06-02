@@ -107,7 +107,20 @@
                         controller : 'CalendarViewController as vm'
                     }
                 }
-            });
+            })
+
+            // Settings
+            .state('app.scrumboard.boards.board.settings', {
+                url  : '/settings',
+                views: {
+                    'scrumboardContent@app.scrumboard.boards.board': {
+                        templateUrl: 'app/main/apps/scrumboard/views/settings/settings-view.html',
+                        controller : 'SettingsViewController as vm'
+                    }
+                }
+            })
+
+            ;
 
         // Translation
         $translatePartialLoaderProvider.addPart('app/main/apps/scrumboard');
