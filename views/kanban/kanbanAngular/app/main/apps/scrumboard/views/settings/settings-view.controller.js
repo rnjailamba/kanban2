@@ -7,197 +7,110 @@
         .controller('SettingsViewController', SettingsViewController);
 
     /** @ngInject */
-    function SettingsViewController($scope, $document, $mdDialog, $mdSidenav, BoardService, DialogService)
+    function SettingsViewController($mdDialog)
     {
         var vm = this;
 
         // Data
-        vm.board = BoardService.data;
-        vm.eventSources = [];
-
-        vm.calendarUiConfig = {
-            calendar: {
-                editable                 : true,
-                eventLimit               : true,
-                header                   : '',
-                handleWindowResize       : false,
-                aspectRatio              : 1,
-                dayNames                 : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-                dayNamesShort            : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-                timezone                 : 'local',
-                eventDurationEditable    : false,
-                defaultTimedEventDuration: '01:00:00',
-                viewRender               : function (view)
-                {
-                    vm.calendarView = view;
-                    vm.calendar = vm.calendarView.calendar;
-                    vm.currentMonthShort = vm.calendar.getDate().format('MMM');
-                },
-                columnFormat             : {
-                    month: 'ddd',
-                    week : 'ddd D',
-                    day  : 'ddd D'
-                },
-                eventClick               : function eventDetail(calendarEvent, ev)
-                {
-                    vm.openCardDialog(ev, calendarEvent.idCard);
-                },
-                eventDrop                : function (event)
-                {
-                    vm.board.cards.getById(event.idCard).due = moment.utc(event.start).format('x');
-                },
-                selectable               : true,
-                selectHelper             : true,
-                dayClick                 : function (date, ev)
-                {
-                    var offset = moment().utcOffset();
-                    var corrDate = '';
-
-                    if ( offset < 0 )
-                    {
-                        corrDate = moment.utc(date).subtract(offset, 'm').format('x');
-                    }
-                    else
-                    {
-                        corrDate = moment.utc(date).add(offset, 'm').format('x');
-                    }
-
-                    eventDialog(corrDate, ev);
-                }
-            }
+        vm.stepper = {
+            step1: {},
+            step2: {},
+            step3: {}
         };
 
+        vm.basicForm = {};
+        vm.formWizard = {};
+        vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+        'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+        'WY').split(' ').map(function (state)
+        {
+            return {abbrev: state};
+        });
+
         // Methods
-        vm.next = next;
-        vm.prev = prev;
-        vm.goToDate = goToDate;
-        vm.openCardDialog = DialogService.openCardDialog;
-        vm.toggleSidenav = toggleSidenav;
+        vm.sendForm = sendForm;
+        vm.submitStepper = submitStepper;
 
         //////////
 
-        init();
-
         /**
-         * Initialize
-         */
-        function init()
-        {
-            vm.cards = getScheduledCards();
-            vm.eventSources[0] = vm.cards;
-        }
-
-        /**
-         * Get scheduled cards and prepare
-         * them to show on the calendar
+         * Submit stepper form
          *
-         * @returns {Array}
+         * @param ev
          */
-        function getScheduledCards()
+        function submitStepper(ev)
         {
-            var cards = [];
+            // You can do an API call here to send the form to your server
 
-            angular.forEach(vm.board.cards, function (card)
-            {
-                if ( card.due )
-                {
-                    cards.push({
-                        idCard         : card.id,
-                        title          : card.name,
-                        start          : moment.utc(card.due, 'x'),
-                        due            : card.due,
-                        backgroundColor: getEventBgColor(card.due)
-                    });
-                }
-            });
-
-            return cards;
-        }
-
-        /**
-         * Get background color
-         *
-         * @param cardDue
-         * @returns {*}
-         */
-        function getEventBgColor(cardDue)
-        {
-            if ( moment() > moment(cardDue, 'x') )
-            {
-                return '#F44336';
-            }
-
-            return '#4CAF50';
-        }
-
-        /**
-         * Watch board changes
-         */
-        $scope.$watch('vm.board', function (current, old)
-        {
-            if ( angular.equals(current, old) )
-            {
-                return;
-            }
-
-            init();
-
-        }, true);
-
-        /**
-         * Go to Date
-         *
-         * @param date
-         */
-        function goToDate(date)
-        {
-            vm.calendarView.calendar.gotoDate(date);
-            $mdSidenav('scheduled-tasks-sidenav').close();
-        }
-
-        /**
-         * Go to next on current view (week, month etc.)
-         */
-        function next()
-        {
-            vm.calendarView.calendar.next();
-        }
-
-        /**
-         * Go to previous on current view (week, month etc.)
-         */
-        function prev()
-        {
-            vm.calendarView.calendar.prev();
-        }
-
-        /**
-         * Event Dialog
-         */
-        function eventDialog(date, ev)
-        {
+            // Show the sent data.. you can delete this safely.
             $mdDialog.show({
-                templateUrl        : 'app/main/apps/scrumboard/views/calendar/dialogs/event/event-dialog.html',
-                controller         : 'ScrumboardCalendarEventDialogController',
-                controllerAs       : 'vm',
-                parent             : $document.find('#scrumboard'),
+                controller         : function ($scope, $mdDialog, formWizardData)
+                {
+                    $scope.formWizardData = formWizardData;
+                    $scope.closeDialog = function ()
+                    {
+                        $mdDialog.hide();
+                    }
+                },
+                template           : '<md-dialog>' +
+                '  <md-dialog-content><h1>You have sent the form with the following data</h1><div><pre>{{formWizardData | json}}</pre></div></md-dialog-content>' +
+                '  <md-dialog-actions>' +
+                '    <md-button ng-click="closeDialog()" class="md-primary">' +
+                '      Close' +
+                '    </md-button>' +
+                '  </md-dialog-actions>' +
+                '</md-dialog>',
+                parent             : angular.element('body'),
                 targetEvent        : ev,
-                clickOutsideToClose: true,
                 locals             : {
-                    dueDate: date
-                }
+                    formWizardData: vm.stepper
+                },
+                clickOutsideToClose: true
             });
+
+            // Reset the form model
+            vm.stepper = {
+                step1: {},
+                step2: {},
+                step3: {}
+            };
         }
 
         /**
-         * Toggle sidenav
-         *
-         * @param sidenavId
+         * Send form
          */
-        function toggleSidenav(sidenavId)
+        function sendForm(ev)
         {
-            $mdSidenav(sidenavId).toggle();
-        }
+            // You can do an API call here to send the form to your server
 
+            // Show the sent data.. you can delete this safely.
+            $mdDialog.show({
+                controller         : function ($scope, $mdDialog, formWizardData)
+                {
+                    $scope.formWizardData = formWizardData;
+                    $scope.closeDialog = function ()
+                    {
+                        $mdDialog.hide();
+                    }
+                },
+                template           : '<md-dialog>' +
+                '  <md-dialog-content><h1>You have sent the form with the following data</h1><div><pre>{{formWizardData | json}}</pre></div></md-dialog-content>' +
+                '  <md-dialog-actions>' +
+                '    <md-button ng-click="closeDialog()" class="md-primary">' +
+                '      Close' +
+                '    </md-button>' +
+                '  </md-dialog-actions>' +
+                '</md-dialog>',
+                parent             : angular.element('body'),
+                targetEvent        : ev,
+                locals             : {
+                    formWizardData: vm.formWizard
+                },
+                clickOutsideToClose: true
+            });
+
+            // Clear the form data
+            vm.formWizard = {};
+        }
     }
 })();

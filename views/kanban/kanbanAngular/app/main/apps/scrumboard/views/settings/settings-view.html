@@ -1,77 +1,144 @@
-<div id="board-calendar" class="page-layout simple right-sidenav" flex layout="row"
-     ng-class="vm.board.settings.color+'-100-bg'">
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column">
 
-    <!-- SCHEDULED CARDS SIDENAV -->
-    <md-sidenav class="sidenav scheduled-tasks-sidenav md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')"
-                md-component-id="scheduled-tasks-sidenav"
-                ng-include="'app/main/apps/scrumboard/views/calendar/sidenavs/scheduled-tasks/scheduled-tasks-sidenav.html'"
-                ms-scroll ms-sidenav-helper>
-    </md-sidenav>
-    <!-- / SCHEDULED CARDS SIDENAV -->
-
-    <!-- CALENDAR -->
-    <div id="calendar" class="md-whiteframe-2dp" flex layout="column" ng-class="vm.currentMonthShort">
-
-        <!-- CALENDAR HEADER -->
-        <div class="calendar-header" layout="row" layout-align="space-between center" layout-xs="column">
-
-            <md-button hide-gt-md class="md-icon-button" ng-click="vm.toggleSidenav('scheduled-tasks-sidenav')"
-                       aria-label="Scheduled Cards Sidenav">
-                <md-icon md-font-icon="icon-calendar-clock"></md-icon>
-                <md-tooltip><span translate="SB.SCHEDULED_CARDS">Scheduled Cards</span></md-tooltip>
-            </md-button>
-
-            <div class="" layout="row" layout-align="start center">
-                <md-button class="md-icon-button arrow" ng-click="vm.calendar.prev()" aria-label="Previous"
-                           translate translate-attr-aria-label="SB.PREVIOUS">
-                    <md-icon md-font-icon="icon-chevron-left"></md-icon>
-                </md-button>
-
-                <div class="title">
-                    {{vm.calendarView.title}}
-                </div>
-
-                <md-button class="md-icon-button arrow" ng-click="vm.calendar.next()" aria-label="Next" translate
-                           translate-attr-aria-label="SB.NEXT">
-                    <md-icon md-font-icon="icon-chevron-right"></md-icon>
-                </md-button>
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+        <div layout="column" layout-align="space-between">
+            <div class="breadcrumb" layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                <span class="parent">USER INTERFACE</span>
             </div>
 
-            <div>
-
-                <md-button class="md-icon-button" ng-click="vm.calendar.today()" aria-label="Today" translate
-                           translate-attr-aria-label="SB.TODAY">
-                    <md-icon md-font-icon="icon-calendar-today"></md-icon>
-                    <md-tooltip><span translate="SB.TODAY">Today</span></md-tooltip>
-                </md-button>
-
-                <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaDay')" aria-label="Day"
-                           translate translate-attr-aria-label="SB.DAY">
-                    <md-icon md-font-icon="icon-view-day"></md-icon>
-                    <md-tooltip><span translate="SB.DAY">Day</span></md-tooltip>
-                </md-button>
-
-                <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaWeek')" aria-label="Week"
-                           translate translate-attr-aria-label="SB.WEEK">
-                    <md-icon md-font-icon="icon-view-week"></md-icon>
-                    <md-tooltip><span translate="SB.WEEK">Week</span></md-tooltip>
-                </md-button>
-
-                <md-button class="md-icon-button" ng-click="vm.calendar.changeView('month')" aria-label="Month"
-                           translate translate-attr-aria-label="SB.MONTH">
-                    <md-icon md-font-icon="icon-view-module"></md-icon>
-                    <md-tooltip><span translate="SB.MONTH">Month</span></md-tooltip>
-                </md-button>
-            </div>
+            <div class="title">Forms</div>
         </div>
-        <!-- / CALENDAR HEADER -->
+    </div>
+    <!-- / HEADER -->
 
-        <!-- CALENDAR MAIN -->
-        <div class="calendar-main" ms-scroll flex ui-calendar="vm.calendarUiConfig.calendar" ng-model="vm.eventSources"
-             calendar="main"></div>
-        <!-- / CALENDAR MAIN -->
+    <!-- CONTENT -->
+    <div class="content" layout="column">
+
+        <!-- STEPPER -->
+        <div class="md-title">Stepper</div>
+        <div class="pb-16">
+            <b>ms-stepper</b> is a custom made form wizard directive. It follows Google's Material Design specifications
+            and we recommend you to use it. If for some reason, it's not suitable for your project, you can always use
+            the Form Wizard that we put together using md-tabs and forms.
+        </div>
+
+        <form name="stepper" ms-stepper ng-submit="vm.submitStepper()" ng-model="vm.stepper" novalidate>
+            <ms-stepper-step ng-form="step1" step="1" step-title="'Personal Information'">
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-1.html'"></div>
+            </ms-stepper-step>
+
+            <ms-stepper-step ng-form="step2" step="2" step-title="'Address'" optional-step>
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-2.html'"></div>
+            </ms-stepper-step>
+
+            <ms-stepper-step ng-form="step3" step="3" step-title="'Payment Method'">
+                <div ng-include="'app/main/ui/forms/stepper-steps/step-3.html'"></div>
+            </ms-stepper-step>
+        </form>
+        <!-- / STEPPER -->
+
+        <div class="md-title mt-32">Form Wizard</div>
+        <div class="pb-16">
+            Form wizard is a combination of md-tabs and forms that we have created for you. You can have as many steps
+            as you want.
+        </div>
+    
+
+        <div class="md-title mt-32">Basic form with validation</div>
+        <div class="pb-16">With this form example, Submit button will only be activated if all the required fields are
+            filled and if there is no error on the form.
+        </div>
+        <div layout="row">
+
+            <!-- BASIC FORM -->
+            <div class="form-wrapper md-whiteframe-1dp" flex="60">
+
+                <form name="basicForm" class="md-inline-form" novalidate>
+
+                    <div class="form-title">Optional form title</div>
+
+                    <div layout="column" layout-gt-sm="row">
+                        <md-input-container flex>
+                            <input type="text" name="firstname" ng-model="vm.basicForm.firstname"
+                                   placeholder="Firstname"
+                                   required>
+                            <div ng-messages="basicForm.firstname.$error"
+                                 role="alert">
+                                <div ng-message="required">
+                                    <span>Firstname field is required.</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <input type="text" name="lastname" ng-model="vm.basicForm.lastname" placeholder="Lastname"
+                                   required>
+                            <div ng-messages="basicForm.lastname.$error"
+                                 role="alert">
+                                <div ng-message="required">
+                                    <span>Lastname field is required.</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div layout="column" layout-gt-xs="row">
+                        <md-input-container flex>
+                            <label>City</label>
+                            <input type="text" name="city" ng-model="vm.basicForm.city">
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <label>State</label>
+                            <md-select ng-model="vm.basicForm.state">
+                                <md-option ng-repeat="state in vm.states" value="{{state.abbrev}}">
+                                    {{state.abbrev}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <label>Postal Code</label>
+                            <input name="postalcode" ng-model="vm.basicForm.postalCode" placeholder="12345"
+                                   required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                            <div ng-messages="basicForm.postalcode.$error" role="alert" multiple>
+                                <div ng-message="required"><span>You must supply a postal code.</span></div>
+                                <div ng-message="pattern"><span>That doesn't look like a valid postal code.</span></div>
+                                <div ng-message="md-maxlength">
+                                    <span>Postal code can't be longer than 5 characters.</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container class="md-block">
+                        <label>Biography</label>
+                        <textarea ng-model="vm.basicForm.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+                    </md-input-container>
+
+                    <md-button type="submit" class="md-raised md-accent" aria-label="Submit"
+                               ng-disabled="basicForm.$invalid || basicForm.$pristine">
+                        Submit
+                    </md-button>
+                </form>
+
+            </div>
+            <!-- / BASIC FORM -->
+
+            <!-- BASIC FORM DATA -->
+            <div class="form-wrapper form-data-wrapper md-whiteframe-1dp" flex="40">
+                <div class="form-title">Form ng-model data</div>
+                <div class="json-data-wrapper">
+                    <pre>{{vm.basicForm | json}}</pre>
+                </div>
+            </div>
+            <!-- / BASIC FORM DATA -->
+        </div>
 
     </div>
-    <!-- / CALENDAR -->
+    <!-- / CONTENT -->
 
 </div>

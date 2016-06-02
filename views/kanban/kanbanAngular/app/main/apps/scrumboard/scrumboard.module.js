@@ -112,12 +112,13 @@
             // Settings
             .state('app.scrumboard.boards.board.settings', {
                 url  : '/settings',
-                views: {
-                    'scrumboardContent@app.scrumboard.boards.board': {
+                views    : {
+                    'content@app': {
                         templateUrl: 'app/main/apps/scrumboard/views/settings/settings-view.html',
                         controller : 'SettingsViewController as vm'
                     }
-                }
+                },
+                bodyClass: 'forms'
             })
 
             ;
