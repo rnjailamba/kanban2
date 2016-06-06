@@ -16359,7 +16359,7 @@ body.boxed {
     right: 0;
     left: 0;
     height: 200px;
-    background-image: url("/assets/images/backgrounds/header-bg.png");
+    /*background-image: url("/assets/images/backgrounds/header-bg.png");*/
     background-size: cover; }
   .page-layout md-backdrop {
     z-index: 50; }
@@ -16530,7 +16530,7 @@ body.boxed {
       min-height: 200px;
       max-height: 200px;
       padding: 24px;
-      background-image: url("/assets/images/backgrounds/header-bg.png");
+      /*background-image: url("/assets/images/backgrounds/header-bg.png");*/
       background-size: cover; }
     .page-layout.simple.fullwidth > .content {
       padding: 24px; }
@@ -16565,7 +16565,7 @@ body.boxed {
         min-height: 200px;
         max-height: 200px;
         padding: 24px;
-        background-image: url("/assets/images/backgrounds/header-bg.png");
+        /*background-image: url("/assets/images/backgrounds/header-bg.png");*/
         background-size: cover; }
       .page-layout.simple.left-sidenav > .center .content {
         padding: 24px;
@@ -16587,7 +16587,7 @@ body.boxed {
         min-height: 200px;
         max-height: 200px;
         padding: 24px;
-        background-image: url("/assets/images/backgrounds/header-bg.png");
+        /*background-image: url("/assets/images/backgrounds/header-bg.png");*/
         background-size: cover; }
       .page-layout.simple.right-sidenav > .center .content {
         padding: 24px;
@@ -16613,7 +16613,7 @@ body.boxed {
       min-height: 200px;
       max-height: 200px;
       padding: 24px;
-      background-image: url("/assets/images/backgrounds/header-bg.png");
+      /*background-image: url("/assets/images/backgrounds/header-bg.png");*/
       background-size: cover; }
     .page-layout.simple.tabbed > .content > md-tabs > md-tabs-wrapper {
       background: #FFFFFF;

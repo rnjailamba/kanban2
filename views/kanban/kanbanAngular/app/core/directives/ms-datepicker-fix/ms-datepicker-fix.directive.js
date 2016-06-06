@@ -5,7 +5,8 @@
     angular
         .module('app.core')
         .provider('msDatepickerFixConfig', msDatepickerFixConfigProvider)
-        .directive('msDatepickerFix', msDatepickerFix);
+        .directive('msDatepickerFix', msDatepickerFix)
+        .directive('msDatepickerFixNotReq', msDatepickerFixNotReq);
 
     /** @ngInject */
     function msDatepickerFixConfigProvider()
@@ -65,6 +66,19 @@
     {
         return {
             require: 'ngModel',
+            link   : function (scope, elem, attrs, ngModel)
+            {
+                ngModel.$formatters.unshift(msDatepickerFixConfig.formatter); // to view
+                ngModel.$parsers.unshift(msDatepickerFixConfig.parser); // to model
+            }
+        };
+    }
+
+    /** @ngInject */
+    function msDatepickerFixNotReq(msDatepickerFixConfig)
+    {
+        return {
+            // require: 'ngModel',
             link   : function (scope, elem, attrs, ngModel)
             {
                 ngModel.$formatters.unshift(msDatepickerFixConfig.formatter); // to view
